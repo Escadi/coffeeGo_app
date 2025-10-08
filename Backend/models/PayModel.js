@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Pay = sequelize.define("pays", {
+    const Pay = sequelize.define("pay", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -18,7 +18,11 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE
         },
         idOrder:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'orders',
+                key: 'id'
+            }
         }
     });
     return Pay;

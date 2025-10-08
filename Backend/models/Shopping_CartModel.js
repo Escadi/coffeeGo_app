@@ -6,7 +6,11 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         idClient:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'client',
+                key: 'id'
+            }
         },
         totalPrice:{
             type: Sequelize.FLOAT

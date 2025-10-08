@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const detailsSoppingCart = sequelize.define("detailsShoppingCart", {
+    const detailsShoppingCart = sequelize.define("detailsShoppingCart", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -12,13 +12,21 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         idProduct:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'product',
+                key: 'id'
+            }
         },
         idOrder:{
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'order',
+                key: 'id'
+            }
         }
     });
-    return detailsSoppingCart;
+    return detailsShoppingCart;
 
 
 

@@ -1,5 +1,5 @@
 module.exports = (sequelize,Sequelize) => {
-    const product = sequelize.define("products", {
+    const product = sequelize.define("product", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -17,7 +17,7 @@ module.exports = (sequelize,Sequelize) => {
         idCategory:{
             type: Sequelize.INTEGER,
             references:{
-                model: 'categories',
+                model: 'category',
                 key: 'id'
             }
         }

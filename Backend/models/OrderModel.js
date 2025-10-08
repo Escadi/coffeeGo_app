@@ -1,6 +1,5 @@
-
 module.exports = (sequelize, Sequelize) => {
-    const order = sequelize.define("orders", {
+    const order = sequelize.define("order", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -16,10 +15,18 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         idClient: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'client',
+                key: 'id'
+            }
         },
         idBarista: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            references:{
+                model: 'barista',
+                key: 'id'
+            }
         }
     });
     return order
