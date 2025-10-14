@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="F" alt="logo" width="200"/>
+  <img src="Images/logoCoffeGo.png" alt="logo" width="150", border-radius="10px"/>
 </p>
 
 <h1 align="center">CoffeeGo</h1>
 
 <p align="center">
-  <b>Aplicación móvil y web para la gestión y venta de bicicletas</b><br/>
+  <b>Aplicación móvil y web para la tus pedidos dentro de tu cafeteria favorita</b><br/>
   Desarrollada con <a href="https://ionicframework.com/">Ionic</a> + <a href="https://nodejs.org/">Node.js</a> + <a href="https://www.mysql.com/">MySQL</a>
 </p>
 
@@ -26,11 +26,15 @@
 
 ## ✨ Introducción
 
-**Bikeshop App** es una aplicación móvil y web diseñada para gestionar una tienda de bicicletas.  
+**CoffeeGo** es una aplicación móvil y web diseñada para realizar pedidos en las cafeterias como starbacks viendo la carta que tiene teniendo una parte para poner cualquier nota al pedido que quieras realizar para no estar esperando y ver como va tu pedido en todo momento una vez tu cafe o cualquier otro producto este listo te saltara una notificación para poder recogerlo sin necesidad de estar esperando al frente de la barra si no en tu mesa realizando cualquier otra cosa.
+
+Necesitas registrarte como cliente de ese lugar teniendo que iniciar sesion para poder disfrutar de la experiencia
+
 Permite tanto a administradores como a usuarios acceder a funciones específicas según su rol:
 
-- 🧑‍💼 **Administrador**: puede gestionar el inventario, ver pedidos y administrar clientes.  
-- 🚴 **Usuario/Invitado**: puede explorar el catálogo, consultar novedades, ver detalles de productos y realizar compras.
+- 🧑‍💼 **Administrador**: puede gestionar el inventario, ver pedidos y administrar clientes.
+- 🧑‍💼 **barista** : puede ver los pedidos de los cliente y realizar los cambios de estados de los mismos.  
+- 🚴 **Cliente**: puede explorar el catálogo, consultar novedades, ver detalles de productos y realizar compras.
 
 ---
 
@@ -68,7 +72,7 @@ Asegúrate de tener instalados los siguientes componentes:
 
 1. **Clona este repositorio:**
    ```bash
-   git clone https://github.com/Escadi/Bikeshop.git
+   git clone https://github.com/Escadi/coffeeGo_app.git
    ```
 2. Instala las depencias en el backend
    ```bash
@@ -150,6 +154,6 @@ https://documenter.getpostman.com/view/48544649/2sB3QGvC3a
 <p align="center"> <img src="Frontend/src/assets/contruccion.png" alt="En construcción" width="120"/>
   <br/>
   <b>
-    Bikeshop App
+    Coffee Shop
   </b>. </p> 
 
