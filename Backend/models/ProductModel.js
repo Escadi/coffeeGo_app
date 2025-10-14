@@ -21,7 +21,22 @@ module.exports = (sequelize,Sequelize) => {
                 key: 'id'
             }
         }
+    },{
+        timestamps: false
     });
+
+       /**
+     *  ---------------------------------------------------------------------------------
+     * |                                 RELACIONSHIPS                                   |
+     *  ---------------------------------------------------------------------------------
+     */
+    product.associate = (models)=>{
+        product.belongsTo(models.CategoryModel,{
+            foreignKey:"idCategory",
+            as:"category"
+        });
+        
+    }
     return product;
 
 }

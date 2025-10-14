@@ -5,29 +5,63 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        stock:{
+        stock: {
             type: Sequelize.INTEGER
         },
-        discount:{
+        discount: {
             type: Sequelize.INTEGER
         },
-        idProduct:{
+        idProduct: {
             type: Sequelize.INTEGER,
-            references:{
+            references: {
                 model: 'product',
                 key: 'id'
             }
         },
-        idOrder:{
+        idShoppingCart: {
             type: Sequelize.INTEGER,
-            references:{
-                model: 'order',
+            references: {
+                model: 'shoppingCart',
                 key: 'id'
             }
+        },
+        idClient: {
+            type: Sequelize.INTEGER,
+            references: {
+                model: "client",
+                key: "id"
+            }
         }
+    }, {
+        timestamps: false
     });
+
+    /**
+  *  ---------------------------------------------------------------------------------
+  * |                                 RELACIONSHIPS                                   |
+  *  ---------------------------------------------------------------------------------
+  */
+
+    detailsShoppingCart.associate = (models) => {
+
+        detailsShoppingCart.belongsTo(models.Shopping_CartModel, {
+            foreignKey: "idShoppingCart",
+            as: "shoppingCart"
+        });
+        detailsShoppingCart.belongsTo(models.ProductModel, {
+            foreignKey: "idProduct",
+            as: "product"
+        });
+        detailsShoppingCart.belongsTo(models.ClientModels, {
+            foreignKey: "idClient",
+            as: "client"
+        });
+    };
+
+
+
     return detailsShoppingCart;
 
 
 
-}
+};

@@ -16,18 +16,43 @@ module.exports = (sequelize, Sequelize) => {
         },
         idClient: {
             type: Sequelize.INTEGER,
-            references:{
+            references: {
                 model: 'client',
                 key: 'id'
             }
         },
         idBarista: {
             type: Sequelize.INTEGER,
-            references:{
+            references: {
                 model: 'barista',
                 key: 'id'
             }
         }
+    }, {
+        timestamps: false
     });
-    return order
-}
+
+
+
+    /**
+  *  ---------------------------------------------------------------------------------
+  * |                                 RELACIONSHIPS                                   |
+  *  ---------------------------------------------------------------------------------
+  */
+
+    order.associate = (models) => {
+
+        order.belongsTo(models.ClientModel, {
+            foreignKey: "idClient",
+            as: "client"
+        });
+
+        order.belongsTo(models.BaristaModel, {
+            foreignKey: "idBarista",
+            as: "barista"
+        });
+
+
+    };
+    return order;
+};

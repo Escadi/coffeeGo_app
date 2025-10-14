@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Pay = sequelize.define("pay", {
+    const pay = sequelize.define("pay", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -20,10 +20,26 @@ module.exports = (sequelize, Sequelize) => {
         idOrder:{
             type: Sequelize.INTEGER,
             references:{
-                model: 'orders',
+                model: 'order',
                 key: 'id'
             }
         }
+    },{
+        timestamps:false
     });
-    return Pay;
-}
+
+        /**
+  *  ---------------------------------------------------------------------------------
+  * |                                 RELACIONSHIPS                                   |
+  *  ---------------------------------------------------------------------------------
+  */
+    pay.associate = (models) => {
+
+        pay.belongsTo(models.OrderModel,{
+            foreignKey:"idOrder",
+            as:"order"
+        });
+    };
+        
+    return pay;
+};

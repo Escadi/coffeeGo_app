@@ -15,7 +15,24 @@ module.exports = (sequelize, Sequelize) => {
         totalPrice:{
             type: Sequelize.FLOAT
         }
+    },{
+        timestamps: false
+
     });
+
+    
+    /**
+     *  ---------------------------------------------------------------------------------
+     * |                                 RELACIONSHIPS                                   |
+     *  ---------------------------------------------------------------------------------
+     */
+
+        shoppingCart.associate = (models) => {
+            shoppingCart.belongsTo(models.Client,{
+                foreignKey: "idClient",
+                as:"client"
+            });
+        }
 
     return shoppingCart;
 }
