@@ -3,7 +3,7 @@ module.exports = {
     USER: "root",
     //PASSWORD: "javilanz1986.",
     PASSWORD:"",
-    DB: "coffeGO_DB",
+    DB: "coffeeGo_db",
     dialect: "mysql",
     pool: {
         max: 5,

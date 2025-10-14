@@ -1,14 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     const pay = sequelize.define("pay", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         typePay: {
             type: Sequelize.STRING
         },
-        statusay:{
+        statusPay:{
             type: Sequelize.STRING
         },
         totalPrice:{
@@ -24,8 +19,6 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             }
         }
-    },{
-        timestamps:false
     });
 
         /**
@@ -34,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
   *  ---------------------------------------------------------------------------------
   */
     pay.associate = (models) => {
-
+        // COMES TO
         pay.belongsTo(models.OrderModel,{
             foreignKey:"idOrder",
             as:"order"
@@ -42,4 +35,4 @@ module.exports = (sequelize, Sequelize) => {
     };
         
     return pay;
-};
+}

@@ -1,10 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const detailsShoppingCart = sequelize.define("detailsShoppingCart", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         stock: {
             type: Sequelize.INTEGER
         },
@@ -32,8 +27,6 @@ module.exports = (sequelize, Sequelize) => {
                 key: "id"
             }
         }
-    }, {
-        timestamps: false
     });
 
     /**
@@ -44,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
 
     detailsShoppingCart.associate = (models) => {
 
-        detailsShoppingCart.belongsTo(models.Shopping_CartModel, {
+        detailsShoppingCart.belongsTo(models.ShoppingCartModel, {
             foreignKey: "idShoppingCart",
             as: "shoppingCart"
         });
@@ -52,7 +45,7 @@ module.exports = (sequelize, Sequelize) => {
             foreignKey: "idProduct",
             as: "product"
         });
-        detailsShoppingCart.belongsTo(models.ClientModels, {
+        detailsShoppingCart.belongsTo(models.ClientModel, {
             foreignKey: "idClient",
             as: "client"
         });
@@ -64,4 +57,4 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-};
+}

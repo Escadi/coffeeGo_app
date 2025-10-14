@@ -1,12 +1,24 @@
 module.exports = (sequelize, Sequelize) => {
     const category = sequelize.define("category", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-        },
         nameCategory: {
             type: Sequelize.STRING
         }
     });
+
+     /**
+    *  ---------------------------------------------------------------------------------
+    * |                                 RELACIONSHIPS                                   |
+    *  ---------------------------------------------------------------------------------
+    */
+
+     category.associate = (models) => {
+
+        //IS GOING TO
+        category.hasMany(models.ProductModel,{
+            foreignKey:"idCategory",
+            as:"category"
+        })
+     };
     return category
+    
 }

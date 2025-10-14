@@ -1,10 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const order = sequelize.define("order", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         date: {
             type: Sequelize.DATE
         },
@@ -28,8 +23,6 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             }
         }
-    }, {
-        timestamps: false
     });
 
 
@@ -41,7 +34,7 @@ module.exports = (sequelize, Sequelize) => {
   */
 
     order.associate = (models) => {
-
+        //COMES TO
         order.belongsTo(models.ClientModel, {
             foreignKey: "idClient",
             as: "client"
@@ -52,7 +45,18 @@ module.exports = (sequelize, Sequelize) => {
             as: "barista"
         });
 
+        // IS GOING TO
+        order.hasMany(models.PayModel, {
+            foreignKey: "idOrder",
+            as: "pay"
+        });
+        order.hasMany(models.DetailsOrderModel, {
+            foreignKey: "idOrder",
+            as: "detailsOrder"
+        });
+
+
 
     };
     return order;
-};
+}

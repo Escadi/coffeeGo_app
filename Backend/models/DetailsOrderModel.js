@@ -1,12 +1,7 @@
-const { detailsOrders } = require("./indexModels");
+const { detailsOrders } = require(".");
 
 module.exports = (sequelize, Sequelize) => {
     const detailsOrder = sequelize.define("detailsOrder", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         stock: {
             type: Sequelize.INTEGER
         },
@@ -15,34 +10,25 @@ module.exports = (sequelize, Sequelize) => {
         },
         idProduct: {
             type: Sequelize.INTEGER,
-            reference: {
+            references: {
                 model: "product",
                 key: "id"
             }
         },
         idOrder: {
             type: Sequelize.INTEGER,
-            reference: {
+            references: {
                 model: "order",
                 key: "id"
             }
         },
         idClient: {
             type: Sequelize.INTEGER,
-            reference: {
+            references: {
                 model: "client",
                 key: "id"
             }
-        },
-        idShoppingCart: {
-            type: Sequelize.INTEGER,
-            reference: {
-                model: "shoppingCart",
-                key: "id"
-            }
         }
-    }, {
-        timestamps: false
     });
 
     /**
@@ -52,21 +38,18 @@ module.exports = (sequelize, Sequelize) => {
      */
     detailsOrder.associate = (models) => {
 
+        // COMES TO
         detailsOrder.belongsTo(models.ProductModel, {
             foreignKey: "idProduct",
             as: "product"
         });
 
-        detailsOrder.belongsTo(models.shoppingCartModel, {
-            foreignKey: "idShoppingCart",
-            as: "shoppingCart"
-        });
         detailsOrder.belongsTo(models.ClientModel, {
             foreignKey: "idClient",
             as: "client"
         });
 
-        detailsOrder.belongsTo(models.OrderModels, {
+        detailsOrder.belongsTo(models.OrderModel, {
             foreignKey: "idOrder",
             as: "order"
         });
@@ -74,4 +57,4 @@ module.exports = (sequelize, Sequelize) => {
     };
     return detailsOrder;
 
-};
+}

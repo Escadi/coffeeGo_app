@@ -1,10 +1,5 @@
 module.exports = (sequelize,Sequelize) => {
     const product = sequelize.define("product", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         nameProduct:{
             type: Sequelize.STRING
         },
@@ -21,8 +16,6 @@ module.exports = (sequelize,Sequelize) => {
                 key: 'id'
             }
         }
-    },{
-        timestamps: false
     });
 
        /**
@@ -30,13 +23,25 @@ module.exports = (sequelize,Sequelize) => {
      * |                                 RELACIONSHIPS                                   |
      *  ---------------------------------------------------------------------------------
      */
+    
     product.associate = (models)=>{
+        // COMES FROM
         product.belongsTo(models.CategoryModel,{
-            foreignKey:"idCategory",
+            foreigKey:"idCategory",
             as:"category"
         });
+        // IS GOING TO
+        product.hasMany(models.DetailsShoppingCartModel,{
+            foreigKey: "idProduct",
+            as: "detailsShoppingCart"
+        });
+        product.hasMany(models.DetailsOrderModel,{
+            foreigKey: "idProduct",
+            as: "detailsOrder"
+        });
+
         
-    }
+    };
     return product;
 
 }

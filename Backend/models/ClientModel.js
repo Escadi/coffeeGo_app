@@ -1,10 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const client = sequelize.define("client", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         nameClient: {
             type: Sequelize.STRING
         },
@@ -15,5 +10,28 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         }
     });
+
+     /**
+    *  ---------------------------------------------------------------------------------
+    * |                                 RELACIONSHIPS                                   |
+    *  ---------------------------------------------------------------------------------
+    */
+
+    client.associate = (models) => {
+        //is going to
+        client.hasMany(models.ShoppingCartModel,{
+            foreignKey:"idClient",
+            as:"shoppingCart"
+        });
+          client.hasMany(models.DetailsShoppingCartModel,{
+            foreignKey:"idClient",
+            as:"detailsShoppingCart"
+        });
+          client.hasMany(models.OrderModel,{
+            foreignKey:"idClient",
+            as:"order"
+        });
+
+    };
     return client;
 }
