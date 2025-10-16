@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
         nameClient: {
             type: Sequelize.STRING
         },
-        usernamesClient: {
+        usernameClient: {
             type: Sequelize.STRING
         },
         emailClient: {

@@ -1,8 +1,8 @@
 module.exports = {
     HOST: "localhost",
     USER: "root",
-    PASSWORD: "javilanz1986.",
-    //PASSWORD:"",
+    //PASSWORD: "javilanz1986.",
+    PASSWORD:"",
     DB: "coffeeGo_db",
     dialect: "mysql",
     pool: {

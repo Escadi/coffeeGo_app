@@ -41,7 +41,7 @@ db.product = require('./ProductModel.js')(sequelize, Sequelize);
 db.shoppingCart = require('./ShoppingCartModel.js')(sequelize, Sequelize);
 db.detailsShoppingCart = require('./DetailsShoppingCartModel.js')(sequelize, Sequelize);
 db.order = require('./OrderModel.js')(sequelize, Sequelize);
-db.detailsOrder = require('./DetailsOrderModel.js')(sequelize, Sequelize);
+db.detailsOrders = require('./DetailsOrderModel.js')(sequelize, Sequelize);
 db.pay = require('./PayModel.js')(sequelize, Sequelize);
 
 
@@ -51,7 +51,5 @@ Object.keys(db).forEach((modelName) => {
         db[modelName].associate.db
     }
 });
-
-
 
 module.exports = db;
