@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error ocurred while creating the bicycle."
+                    err.message || "Some error ocurred while creating the client."
             })
         })
 };

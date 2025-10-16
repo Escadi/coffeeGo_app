@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.json('Hello my coffee!');
 });
 
-require("./routes/ClientRoute")(app);
+require("../Backend/routes")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
