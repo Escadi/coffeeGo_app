@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>tab-admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">tab-admin</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+   <ion-tabs>
+    <ion-tab-bar slot="bottom" class="customIcon">
+      <ion-tab-button tab="inicio">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="catalogos-bicycles">
+        <ion-icon name="menu-outline"></ion-icon>
+        <ion-label>Catalogo</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="my-bicycles">
+        <ion-icon name="card-outline"></ion-icon>
+        <ion-label>Mis Compras</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

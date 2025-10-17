@@ -1,13 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>loginUsers</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">loginUsers</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="containerLogo">
+    <ion-img src="assets/LogoCoffeeGo.png" alt="CoffeeGo" class="logo"></ion-img>
+  </div>
+
+  <div class="containerLogin">
+    <ion-item lines="none">
+      <ion-label position="stacked">Correo Electronico</ion-label>
+      <ion-input type="text" placeholder="Ingresa tu correo" class="inputText"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" value="password" class="inputText"></ion-input>
+    </ion-item>
+    <ion-button fill="clear" expand="full" class="buttonPassword" slot="end" >olvide mi contraseña</ion-button>
+    <ion-button fill="clear" expand="block" class="buttonLogin" class="buttonLogin">Iniciar Sesión</ion-button>
+    <ion-button fill="clear" expand="block" class="buttonLogin" class="buttonLogin">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      Continuar con google</ion-button>
+      <ion-button fill="clear" expand="block" class="buttonLogin" class="buttonLogin">
+      <ion-icon slot="start" name="logo-apple"></ion-icon>
+      Continuar con apple</ion-button>
+  </div>
 </ion-content>
+<ion-footer [translucent]="true">
+  <ion-toolbar colapse="fade">
+    <ion-title>¿No tienes cuenta?
+      <ion-button fill="clear">Regístrate</ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

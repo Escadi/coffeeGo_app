@@ -1,0 +1,63 @@
+ion-content {
+    --background: #f3f3f3de;
+}
+ion-item{
+    --background: #f3f3f3de;
+
+}
+
+.containerLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+.containerLogin {
+    background: #f3f3f3de;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+
+.containerLogin ion-label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.containerLogin ion-input {
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid transparentize($color: #000000, $amount: 0.6);
+    margin-top: 10px;
+    width: 350px;
+    height: 55px;
+    --padding-start: 12px;
+}
+
+.buttonLogin {
+    font-size: 13px;
+    margin-top: 20px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background: #fd8c23;
+    color: white;
+    font-weight: bold;
+}
+
+.buttonPassword {
+    margin-left: 140px;
+    font-size: 10px;
+    color: #fd8c23;
+    font-weight: bold;
+}
