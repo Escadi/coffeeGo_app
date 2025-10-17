@@ -1,6 +1,5 @@
 const db = require("../models");
 const Client = db.client;
-const Op = db.Sequelize.Op;
 
 
 exports.create = (req, res) => {
@@ -38,7 +37,7 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error ocurred while creating the client."
+                    err.message || "Some error ocurred while show the client."
             })
         })
 };

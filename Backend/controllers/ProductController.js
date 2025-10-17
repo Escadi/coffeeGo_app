@@ -1,6 +1,5 @@
 const db = require("../models");
 const Product = db.product;
-const Op = db.Sequelize.Op;
 
 exports.create = (req,res) => {
     if(!req.body.nameProduct){
@@ -12,8 +11,30 @@ exports.create = (req,res) => {
 
     const product = {
         nameProduct: req.body.nameProduct,
-        descriptionProduct: req.body.descriptionProduct,
+        detailsProduct: req.body.detailsProduct,
         priceProduct: req.body.priceProduct,
         idCategory: req.body.idCategory
     };
+    Product.create(product)
+    .then((data) => {
+        res.send(data);
+        
+    }).catch((err) => {
+        err.status(500).send({
+            message: err.message || "Some error occurred while creating the Product."
+        });
+        
+    });
+}
+
+exports.findAll = (req,res) => {
+    Product.findAll()
+    .then((data) => {
+        res.send(data);
+        
+    }).catch((err) => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving products."
+        });
+    });
 }
