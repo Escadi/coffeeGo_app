@@ -8,6 +8,13 @@ module.exports = (sequelize, Sequelize) => {
         },
         emailClient: {
             type: Sequelize.STRING
+        },
+        passwordClient: {
+            type: Sequelize.STRING
+        },
+        rolUserClient: {
+            type: Sequelize.STRING,
+            defaultValue: "client"
         }
     });
 

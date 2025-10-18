@@ -12,7 +12,9 @@ exports.create = (req, res) => {
     const client = {
         nameClient: req.body.nameClient,
         usernameClient: req.body.usernameClient,
-        emailClient: req.body.emailClient
+        emailClient: req.body.emailClient,
+        passwordClient: req.body.passwordClient,
+        rolUserClient: req.body.rolUserClient
     };
 
 
