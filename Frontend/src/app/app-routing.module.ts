@@ -22,9 +22,7 @@ const routes: Routes = [
   {
     path: 'client-form',
     loadChildren: () => import('./client-form/client-form.module').then( m => m.ClientFormPageModule)
-  },
-
-
+  }
 ];
 
 @NgModule({

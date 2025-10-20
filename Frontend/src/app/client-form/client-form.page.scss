@@ -3,19 +3,44 @@ ion-content {
 }
 ion-item{
     --background: #f3f3f3de;
-
 }
+.btnBack{
+    background: transparent;
+}
+.title{
+    box-shadow: none;
+    background: #f3f3f3de;
+}
+
 .formUsers{
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
+}
+.formUsers ion-label{
+    font-weight: bold;
+    font-size: 15px;
     margin-top: 10px;
+    margin-left: 10px;
 }
 .formUsers ion-input {
     background-color: white;
     border-radius: 15px;
     border: 2px solid transparentize($color: #000000, $amount: 0.6);
-    margin-top: 20px;
-    width: 350px;
-    height: 55px;
+    margin-top: 30px;
+    margin-right: 25px;
+    height: 60px;
     --padding-start: 12px;
+}
+.formUsers ion-button{
+    margin-top: 100px;
+    background: #fc7c04;
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    
 }

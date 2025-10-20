@@ -1,32 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab-admin</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab-admin</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
    <ion-tabs>
-    <ion-tab-bar slot="bottom" class="customIcon">
-      <ion-tab-button tab="inicio">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Inicio</ion-label>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="manage-product">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        <ion-label>Productos</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="catalogos-bicycles">
-        <ion-icon name="menu-outline"></ion-icon>
-        <ion-label>Catalogo</ion-label>
+      <ion-tab-button tab="manage-client">
+        <ion-icon name="people-outline"></ion-icon>
+        <ion-label>Clientes</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="my-bicycles">
+      <ion-tab-button tab="manage-pay">
         <ion-icon name="card-outline"></ion-icon>
-        <ion-label>Mis Compras</ion-label>
+        <ion-label>Pagos</ion-label>
       </ion-tab-button>
+
+      <ion-tab-button tab="manage-order">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-label>Pedidos</ion-label>
+      </ion-tab-button>
+
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>

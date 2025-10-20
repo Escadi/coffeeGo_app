@@ -16,6 +16,9 @@ export class LoginUsersPage implements OnInit {
   openRegisterClient() {
     this.route.navigateByUrl("/client-form");
   }
+  openAdmin(){
+    this.route.navigateByUrl("/tab-admin")
+  }
 
   ngOnInit() {
   }
