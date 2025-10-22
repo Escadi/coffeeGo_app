@@ -51,6 +51,10 @@ export class ManageProductPage implements OnInit {
     this.myMenu.open('mainMenu');
   }
 
+  openNewProduct(){
+    this.router.navigateByUrl("/add-product");
+  }
+
   async closeSession(){
     
     this.router.navigateByUrl("\login-users");

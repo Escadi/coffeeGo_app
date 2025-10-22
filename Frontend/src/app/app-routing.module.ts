@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'client-form',
     loadChildren: () => import('./client-form/client-form.module').then( m => m.ClientFormPageModule)
+  },  {
+    path: 'add-product',
+    loadChildren: () => import('./viewAdmin/add-product/add-product.module').then( m => m.AddProductPageModule)
   }
+
 ];
 
 @NgModule({

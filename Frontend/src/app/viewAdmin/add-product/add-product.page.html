@@ -1,0 +1,58 @@
+<ion-header class="mainHeader">
+  <ion-toolbar>
+    <ion-title>Nuevo Producto</ion-title>
+    <ion-back-button class="btnBack" slot="start" default-href="#"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <form class="mainForm">
+
+    <!--Form to input only-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Nombre del producto</ion-label>
+      <ion-input type="text" placeholder="Producto"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Detalles</ion-label>
+      <ion-textarea placeholder="Breve descripción del producto"> </ion-textarea>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="text" placeholder="Precio del producto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Categoria</ion-label>
+      <ion-select interface="action-sheet" placeholder="Categoria Producto" >
+        <ion-select-option *ngFor="let c of category" [value]="c.id">
+          {{c.nameCategory}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!--Image input only-->
+    <ion-item lines="none">
+      <ion-label position="stacked">Imagen</ion-label>
+      <ion-button fill="clear" class="uploadButton" id="click-trigger">
+        <ion-icon name="images-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+
+    <ion-button class="btnAdd" expand="full">Agregar Producto</ion-button>
+
+  </form>
+
+</ion-content>
+
+<!--Popover for upload image-->
+<ion-popover trigger="click-trigger" triggerAction="click">
+  <ng-template>
+    <ion-content>
+      <ion-item button> Subir Imagen </ion-item>
+      <ion-item button> Agregar imagen</ion-item>
+    </ion-content>
+  </ng-template>
+</ion-popover>

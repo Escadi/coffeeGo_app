@@ -1,0 +1,72 @@
+.mainHeader {
+    box-shadow: none;
+}
+
+.mainForm {
+    margin-top: 20px;
+}
+
+.mainForm ion-label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mainForm ion-input {
+    border: 2px solid transparentize($color: #000000, $amount: 0.6);
+    border-radius: 10px;
+    margin-top: 10px;
+    --padding-start: 10px;
+}
+
+.mainForm ion-textarea {
+    margin-top: 10px;
+    border: 2px solid transparentize($color: #000000, $amount: 0.6);
+    border-radius: 10px;
+    height: 200px;
+    --padding-start: 10px
+}
+
+.btnAdd {
+    background: #fd8c23;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.imageBox {
+    margin-top: 40px;
+    margin-left: 15px;
+}
+
+
+.uploadButton {
+    border: 2px dashed #ccc;
+    color: black;
+    border-radius: 8px;
+    width: 350px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.uploadButton ion-icon {
+    width: 30px;
+    height: 30px;
+}
+
+ion-select {
+    color: #000000;
+    border: 2px solid transparentize($color: #000000, $amount: 0.6);
+    border-radius: 10px;
+    margin-top: 10px;
+    --padding-start:10px
+}

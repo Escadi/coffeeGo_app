@@ -1,7 +1,12 @@
 .header{
     box-shadow: none;
 }
+
 .myList ion-button{
     width: 60px;
     height: auto;
+}
+ion-avatar{
+    --border-radius: 4px;
+    margin-bottom: 10px;
 }
