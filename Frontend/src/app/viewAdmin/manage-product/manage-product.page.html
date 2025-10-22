@@ -1,14 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-back-button slot="start" default-href="#" class="btnBack"></ion-back-button>
-    <ion-title>Mis Productos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">manage-product</ion-title>
+<ion-menu side="end" menuId="mainMenu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+
+  <ion-content>
+    <ion-list>
+      <ion-item button>
+        <ion-label>Nuevo producto</ion-label>
+      </ion-item>
+      <ion-item button>
+        <ion-label>Mis pedidos</ion-label>
+      </ion-item>
+      <ion-item button>
+        <ion-label>Configuración</ion-label>
+      </ion-item>
+       <ion-item button (click)="closeSession()">
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="mainPage" id="main-content">
+  <ion-header class="header">
+    <ion-toolbar>
+      <ion-title>Mis Productos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="openMenu()">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-searchbar placeholder="¿Que te apecete tomar hoy?"></ion-searchbar>
+    <ion-list class="myList">
+      <ion-item *ngFor="let p of product">
+        <ion-label>
+          <h1>{{p.nameProduct}}</h1>
+          <p>{{p.detailsProduct}}</p>
+          <h2>{{p.priceProduct}} €</h2>
+        </ion-label>
+        <ion-button slot="end" fill="clear">
+          <img src="../../../assets/icon/plusAgregar.png" alt="plus">
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>
