@@ -3,15 +3,20 @@ ion-content {
 }
 
 .mainHeader {
+    --background: #f3f3f3de;
     box-shadow: none;
 }
 
 .mainForm {
     background: transparent;
     margin-top: 20px;
+    
 }
 .mainForm ion-item{
-    background: transparent;
+    --background: transparent;
+}
+.btnTrash{
+    margin-left: 350px;
 }
 
 .mainForm ion-label {
@@ -19,15 +24,14 @@ ion-content {
     font-size: 20px;
 }
 
-.mainForm ion-input {
+ion-input {
     border: 2px solid transparentize($color: #000000, $amount: 0.6);
     border-radius: 10px;
     margin-top: 10px;
     --padding-start: 10px;
 }
 
-.mainForm ion-textarea {
-    background: transparent;
+ion-textarea {
     margin-top: 10px;
     border: 2px solid transparentize($color: #000000, $amount: 0.6);
     border-radius: 10px;
@@ -46,13 +50,14 @@ ion-content {
 }
 
 .imageBox {
-    background: transparent;
+    --background: transparent;
     margin-top: 40px;
     margin-left: 15px;
 }
 
 
 .uploadButton {
+    --background: transparent;
     border: 2px dashed #ccc;
     color: black;
     border-radius: 8px;
@@ -74,9 +79,10 @@ ion-content {
 }
 
 ion-select {
+    --background: transparent;
     color: #000000;
     border: 2px solid transparentize($color: #000000, $amount: 0.6);
     border-radius: 10px;
     margin-top: 10px;
-    --padding-start:10px
+    --padding-start: 10px
 }

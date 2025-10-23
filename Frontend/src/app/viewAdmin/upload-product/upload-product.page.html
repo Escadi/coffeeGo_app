@@ -1,37 +1,39 @@
 <ion-header class="mainHeader">
   <ion-toolbar>
-    <ion-title>Nuevo Producto</ion-title>
+    <ion-title>Modificar Producto</ion-title>
     <ion-back-button class="btnBack" slot="start" default-href="#"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <form [formGroup]= "productForm" class="mainForm" (ngSubmit)="createProduct()">
+  <form class="mainForm">
 
-    <!--Form to input only-->
+    <ion-button fill="clear" class="btnTrash">
+      <ion-icon color="dark" name="trash-outline"></ion-icon>
+    </ion-button>
+
     <ion-item lines="none">
       <ion-label position="stacked">Nombre del producto</ion-label>
-      <ion-input type="text" placeholder="Producto" formControlName="nameProduct"></ion-input>
+      <ion-input [(ngModel)] = "nameProduct" name="nameProduct"></ion-input>
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked">Detalles</ion-label>
-      <ion-textarea placeholder="Breve descripción del producto" formControlName="detailsProduct"> </ion-textarea>
+      <ion-textarea [(ngModel)] = "detailsProduct" name="detailsProduct"></ion-textarea>
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked">Precio</ion-label>
-      <ion-input type="number" placeholder="Precio del producto" formControlName="priceProduct"></ion-input>
+      <ion-input [(ngModel)] = "priceProduct" name="priceProduct"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none">
       <ion-label position="stacked">Categoria</ion-label>
-      <ion-select interface="action-sheet" placeholder="Categoria Producto" formControlName="idCategory" type="number" >
-        <ion-select-option *ngFor="let c of category" [value]="c.id" >
+      <ion-select interface="action-sheet" [(ngModel)] = "idCategory" name="idCategory">
+        <ion-select-option *ngFor="let c of category" [value]="c.id">
           {{c.nameCategory}}
         </ion-select-option>
       </ion-select>
     </ion-item>
-
     <!--Image input only-->
     <ion-item lines="none">
       <ion-label position="stacked">Imagen</ion-label>
@@ -39,12 +41,12 @@
         <ion-icon name="images-outline"></ion-icon>
       </ion-button>
     </ion-item>
-  
 
+    <ion-button class="btnAdd" expand="full" (click)=" updateProduct()">Guardar Cambios</ion-button>
 
-    <ion-button class="btnAdd" expand="full" type="submit">Agregar Producto</ion-button>
 
   </form>
+
 
 </ion-content>
 

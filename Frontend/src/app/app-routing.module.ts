@@ -22,9 +22,14 @@ const routes: Routes = [
   {
     path: 'client-form',
     loadChildren: () => import('./client-form/client-form.module').then( m => m.ClientFormPageModule)
-  },  {
+  },
+  {
     path: 'add-product',
     loadChildren: () => import('./viewAdmin/add-product/add-product.module').then( m => m.AddProductPageModule)
+  },
+  {
+    path: 'upload-product/:id',
+    loadChildren: () => import('./viewAdmin/upload-product/upload-product.module').then( m => m.UploadProductPageModule)
   }
 
 ];

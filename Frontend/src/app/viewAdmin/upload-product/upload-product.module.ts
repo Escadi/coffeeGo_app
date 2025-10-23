@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddProductPageRoutingModule } from './add-product-routing.module';
+import { UploadProductPageRoutingModule } from './upload-product-routing.module';
 
-import { AddProductPage } from './add-product.page';
+import { UploadProductPage } from './upload-product.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { AddProductPage } from './add-product.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    AddProductPageRoutingModule
+    UploadProductPageRoutingModule
   ],
-  declarations: [AddProductPage]
+  declarations: [UploadProductPage]
 })
-export class AddProductPageModule {}
+export class UploadProductPageModule {}

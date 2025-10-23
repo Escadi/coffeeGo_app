@@ -8,35 +8,51 @@ import { MenuController } from '@ionic/angular';
   selector: 'app-manage-product',
   templateUrl: './manage-product.page.html',
   styleUrls: ['./manage-product.page.scss'],
-  standalone:false
+  standalone: false
 })
 export class ManageProductPage implements OnInit {
 
-  product : any [] = [];
+  product: any = [];
 
   constructor(
-    private productService : CoffeeGoServices,
-    private myMenu : MenuController,
-    private router : Router
+    private productService: CoffeeGoServices,
+    private myMenu: MenuController,
+    private router: Router
   ) { }
 
 
   ngOnInit() {
     this.getAllProduct();
+    this.ionViewWillEnter();
   }
 
+
+  ionViewWillEnter() {
+    this.loadProduct();
+  }
+
+
+
+  loadProduct() {
+    this.productService.getProduct().subscribe(
+      {
+        next: (res) => this.product = res
+
+      });
+  }
 
   /**
    *  --------------------------------------------------------------
    * |                     CALL APIREST PRODUCT                     |
    *  --------------------------------------------------------------
-   */ 
-    getAllProduct(){
-      this.productService.getProduct().subscribe(
-        {next: (data:any) =>
-        this.product = data
+   */
+  getAllProduct() {
+    this.productService.getProduct().subscribe(
+      {
+        next: (data: any) =>
+          this.product = data
       });
-    }
+  }
 
 
 
@@ -45,18 +61,21 @@ export class ManageProductPage implements OnInit {
    *  --------------------------------------------------------------
    * |                      OPENS VIEWS APP                         |
    *  --------------------------------------------------------------
-   */ 
-  
-  openMenu(){
+   */
+
+  openMenu() {
     this.myMenu.open('mainMenu');
   }
+  openUploadProduct() {
+    this.router.navigateByUrl("/upload-product")
+  }
 
-  openNewProduct(){
+  openNewProduct() {
     this.router.navigateByUrl("/add-product");
   }
 
-  async closeSession(){
-    
+  async closeSession() {
+
     this.router.navigateByUrl("\login-users");
 
     await this.myMenu.close();
@@ -66,6 +85,6 @@ export class ManageProductPage implements OnInit {
     window.location.reload();
 
   }
-  
-  
+
+
 }

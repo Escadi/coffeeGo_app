@@ -35,7 +35,7 @@
   <ion-content [fullscreen]="true">
     <ion-searchbar placeholder="¿Que te apecete tomar hoy?"></ion-searchbar>
     <ion-list class="myList">
-      <ion-item *ngFor="let p of product">
+      <ion-item *ngFor="let p of product" [routerLink]="['/upload-product', p.id]">
         <ion-label>
           <ion-avatar slot="start" class="avatar">
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
@@ -44,9 +44,6 @@
           <p>{{p.detailsProduct}}</p>
           <h2>{{p.priceProduct}} €</h2>
         </ion-label>
-        <ion-button slot="end" fill="clear">
-          <img src="../../../assets/icon/plusAgregar.png" alt="plus">
-        </ion-button>
       </ion-item>
     </ion-list>
   </ion-content>
