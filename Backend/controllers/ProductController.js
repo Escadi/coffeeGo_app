@@ -75,3 +75,17 @@ exports.update = (req, res) => {
       res.status(500).send({ message: "Error updating Product with id=" + id });
     });
 };
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Product.destroy({ where: { id } })
+    .then(num => {
+      if (num == 1) {
+        res.send({ message: "Product deleted successfully!" });
+      } else {
+        res.send({ message: `Cannot delete Product with id=${id}. Maybe Product was not found!` });
+      }
+    }).catch(err => {
+      res.status(500).send({ message: "Could not delete Product with id=" + id });
+    } );
+}  

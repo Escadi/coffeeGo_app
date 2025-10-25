@@ -54,6 +54,10 @@ export class CoffeeGoServices {
 
     return this.httpClient.put(`${this.endPointProducts}/${id}`, bodyProduct.toString(), {headers} );
   }
+  
+  deleteProduct(id:number){
+    return this.httpClient.delete(`${this.endPointProducts}/${id}}`);
+  }
 
   getProductoId(id: number) {
     return this.httpClient.get(`${this.endPointProducts}/${id}`);
