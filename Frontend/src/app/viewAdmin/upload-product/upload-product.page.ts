@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 import { Location } from '@angular/common';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-upload-product',
@@ -22,8 +23,10 @@ export class UploadProductPage implements OnInit {
   constructor(
     private productService: CoffeeGoServices,
     private activatedRouter: ActivatedRoute,
+    private alertController: AlertController,
     private location: Location,
-    private route: Router
+    private route: Router,
+    private navController: NavController
   ) { }
 
 
@@ -38,7 +41,7 @@ export class UploadProductPage implements OnInit {
 
   }
 
-   getAllProducts() {
+  getAllProducts() {
     this.productService.getProduct().subscribe(response => {
       this.product = response
     });
@@ -53,12 +56,12 @@ export class UploadProductPage implements OnInit {
         this.detailsProduct = response.detailsProduct;
         this.priceProduct = response.priceProduct;
         this.idCategory = response.idCategory;
-        console.log("nameProduct", this.nameProduct);
       },
+
     });
   }
 
-  updateProduct() {
+  async updateProduct() {
     const updatedProduct = {
       nameProduct: this.nameProduct,
       detailsProduct: this.detailsProduct,
@@ -66,20 +69,61 @@ export class UploadProductPage implements OnInit {
       idCategory: this.idCategory
     };
 
-    this.productService.updateProduct(this.id, updatedProduct).subscribe({
-      next: res => {
-        
-         this.location.back();
-      },
-      error: err => {
-        
-        alert('Error al actualizar el producto');
-      }
+    const alert = await this.alertController.create({
+      header: 'Modificar',
+      message: '¿Deseas modificar el producto?',
+      buttons: [
+        {
+          text: 'Modificar',
+          handler: () => {
+            this.productService.updateProduct(this.id, updatedProduct).subscribe({
+              next: res => {
+                this.location.back();
+              }
+            });
+          }
+        },
+        {
+           text:'Cancelar',
+           role:'cancel',
+           cssClass: 'cancel-button'
+        }
+         
+      ]
     });
+    await alert.present();
+
   }
 
-  
+  async deleteProduct() {
+    const alert = await this.alertController.create({
+      header: 'Eliminar',
+      message: '¿Estas Seguro de querer eliminarlo?',
+      cssClass: 'alert-custom',
+      buttons: [
+        {
+          text: 'Eliminar',
+          cssClass: 'delete-button',
+          handler: () => {
+            this.productService.deleteProduct(this.id).subscribe({
+              next:res =>{
+                this.location.back();
+              }
 
+            });
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
+        }
+
+
+      ]
+    });
+    await alert.present();
+  }
   //Categories
   getAllCategories() {
     this.productService.getCategory().subscribe(response => {

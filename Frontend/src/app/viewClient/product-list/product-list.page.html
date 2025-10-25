@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Menú</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="myList">
+    <ion-searchbar placeholder="Busca tu producto favorito"></ion-searchbar>
+    
+    <ion-item *ngFor="let p of product">
+      <ion-label>
+      <h1>{{p.nameProduct}}</h1>
+      <h3>{{p.detailsProduct}}</h3>
+      <h2>{{p.priceProduct}}</h2>
+
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

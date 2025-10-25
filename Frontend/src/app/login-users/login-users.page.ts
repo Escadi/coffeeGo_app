@@ -17,7 +17,10 @@ export class LoginUsersPage implements OnInit {
     this.route.navigateByUrl("/client-form");
   }
   openAdmin(){
-    this.route.navigateByUrl("/tab-admin")
+    this.route.navigateByUrl("/tab-admin");
+  }
+  openUser(){
+    this.route.navigateByUrl("/tab-client");
   }
 
   ngOnInit() {

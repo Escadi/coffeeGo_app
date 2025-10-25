@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 
 @Component({
@@ -20,7 +20,8 @@ export class AddProductPage implements OnInit {
     public formBuilder: FormBuilder,
     private productService: CoffeeGoServices,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private navControl: NavController
   ) {
     this.productForm = this.formBuilder.group({
       nameProduct: ['', Validators.compose([Validators.required])],
@@ -42,8 +43,16 @@ export class AddProductPage implements OnInit {
   async alertAdd() {
     const alert = await this.alertController.create({
       header: 'exito',
-      message: 'Producto Añadido',
-      buttons: ['OK']
+      message: 'Producto añadido correctamente',
+      buttons: [
+        {
+          text:'OK',
+          handler: () => {
+            this.productForm.reset();
+            this.navControl.navigateBack('manage-product');
+          }
+        }
+      ]
     });
     await alert.present();
   }
@@ -60,8 +69,6 @@ createProduct() {
     this.productService.createProduct(this.productForm.value).subscribe({
       next: async (response) => {
         await this.alertAdd();
-        this.productForm.reset();
-        this.router.navigateByUrl('/manage-product', { replaceUrl: true });
       },
       error: (err) => {
         console.error('Error al crear el producto', err);
