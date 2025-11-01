@@ -21,13 +21,28 @@ export class ProductListPage implements OnInit {
   }
 
 
+  increment(index: number) {
+    this.product[index].quantity++;
+  }
+
+  decrement(index: number) {
+    if (this.product[index].quantity > 0) {
+      this.product[index].quantity--;
+    }
+  }
+
+
 
   getAllProduct() {
-    this.productService.getProduct().subscribe(
-      {
-        next: (data: any) =>
-          this.product = data
-      });
+    this.productService.getProduct().subscribe({
+      next: (data: any) => {
+        this.product = data.map((p: any) => ({
+          ...p,
+          quantity: 0
+        }));
+      },
+      error: (err) => console.error(err)
+    });
   }
 
 }

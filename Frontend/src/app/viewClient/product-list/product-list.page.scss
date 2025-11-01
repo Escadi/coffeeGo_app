@@ -1,0 +1,20 @@
+.buttonsSelection {
+  display: flex;
+  align-items: center;
+  gap: 3px; 
+  margin-right: 3px;
+  width: auto;
+}
+.buttonsSelection ion-button{
+    background-color: orange;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+ion-input {
+  width: 30px;
+  text-align: center;
+  color: black;
+}

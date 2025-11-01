@@ -7,14 +7,23 @@
 <ion-content [fullscreen]="true">
   <ion-list class="myList">
     <ion-searchbar placeholder="Busca tu producto favorito"></ion-searchbar>
-    
-    <ion-item *ngFor="let p of product">
-      <ion-label>
-      <h1>{{p.nameProduct}}</h1>
-      <h3>{{p.detailsProduct}}</h3>
-      <h2>{{p.priceProduct}}</h2>
 
+    <ion-item *ngFor="let p of product ; let i = index">
+      <ion-label>
+        <h1>{{p.nameProduct}}</h1>
+        <h3>{{p.detailsProduct}}</h3>
+        <h2>{{p.priceProduct}} €</h2>
       </ion-label>
+
+      <div slot="end" class="buttonsSelection">
+        <ion-button shape="round" fill="clear" (click)="decrement(i)" >
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <ion-input type="number" [(ngModel)]="p.quantity" readonly="true" min="0" value="0"></ion-input>
+        <ion-button shape="round" fill="clear" (click)="increment(i)">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
