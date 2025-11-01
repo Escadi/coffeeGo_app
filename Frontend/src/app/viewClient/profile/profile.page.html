@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title slot="start">Mi perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form class="main-form">
+    <ion-item lines="none">
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Apellidos</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">¿Quieres cambiar tu contraseña?</ion-label>
+      <ion-button>Cambiar contraseña</ion-button>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-button (click)="back()">Cerrar Sesión</ion-button>
+    </ion-item>
+
+  </form>
 </ion-content>

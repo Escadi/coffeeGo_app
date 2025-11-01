@@ -22,6 +22,9 @@ export class LoginUsersPage implements OnInit {
   openUser(){
     this.route.navigateByUrl("/tab-client");
   }
+  openBarista(){
+    this.route.navigateByUrl("/tab-barista");
+  }
 
   ngOnInit() {
   }
