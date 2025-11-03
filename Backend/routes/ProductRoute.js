@@ -1,5 +1,6 @@
 module.exports = (app) => {
     const product = require("../controllers/ProductController.js");
+    var upload = require("../multer/upload.js");
 
     var router = require("express").Router();
 

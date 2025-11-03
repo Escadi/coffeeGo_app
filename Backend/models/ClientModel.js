@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         rolUserClient: {
             type: Sequelize.STRING,
-            defaultValue: "client"
+            defaultValue: "user"
         }
     });
 

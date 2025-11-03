@@ -9,6 +9,9 @@ module.exports = (sequelize,Sequelize) => {
         priceProduct:{
             type: Sequelize.FLOAT
         },
+        filename:{
+            type: Sequelize.STRING
+        },
         idCategory:{
             type: Sequelize.INTEGER,
             references:{

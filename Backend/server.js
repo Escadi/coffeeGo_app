@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+var path = require('path');
+
+
 const app = express();
 var corsOptions = {
     origin: "http://localhost:8100"
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
