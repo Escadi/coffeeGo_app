@@ -12,9 +12,9 @@ exports.create = (req, res) => {
   const product = {
     nameProduct: req.body.nameProduct,
     detailsProduct: req.body.detailsProduct,
-    priceProduct: parseFloat(req.body.priceProduct),
+    priceProduct: req.body.priceProduct,
     file: req.file ? req.file.filename : "",
-    idCategory: parseInt(req.body.idCategory) || null
+    idCategory: req.body.idCategory
   };
   Product.create(product)
     .then((data) => {

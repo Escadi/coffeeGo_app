@@ -7,7 +7,7 @@ var storage = multer.diskStorage({
         var filetype = '';
         if (file.mimetype === 'image/gif') {
             filetype = 'gif';
-        } else if (file.mimetype === 'image/png') {
+        } if (file.mimetype === 'image/png') {
             filetype = 'png';
         } else if (file.mimetype === 'image/jpeg') {
             filetype = 'jpg';
