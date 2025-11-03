@@ -5,13 +5,17 @@ var storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         var filetype = '';
+        
         if (file.mimetype === 'image/gif') {
             filetype = 'gif';
-        } if (file.mimetype === 'image/png') {
+        }
+        if (file.mimetype === 'image/png') {
             filetype = 'png';
-        } else if (file.mimetype === 'image/jpeg') {
+        }
+        if (file.mimetype === 'image/jpeg') {
             filetype = 'jpg';
         }
+
         cb(null, 'image-' + Date.now() + '.' + filetype);
     }
 });

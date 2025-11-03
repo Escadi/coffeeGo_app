@@ -13,9 +13,10 @@ exports.create = (req, res) => {
     nameProduct: req.body.nameProduct,
     detailsProduct: req.body.detailsProduct,
     priceProduct: req.body.priceProduct,
-    file: req.file ? req.file.filename : "",
+    filename: req.file ? req.file.filename : "",
     idCategory: req.body.idCategory
   };
+
   Product.create(product)
     .then((data) => {
       res.send(data);
