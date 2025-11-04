@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         discount: {
             type: Sequelize.INTEGER
         },
+        
         idProduct: {
             type: Sequelize.INTEGER,
             references: {

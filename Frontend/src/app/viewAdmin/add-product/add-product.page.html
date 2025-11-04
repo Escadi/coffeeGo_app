@@ -36,7 +36,8 @@
     <ion-item lines="none">
       <ion-label position="stacked">Imagen</ion-label>
       <ion-button fill="clear" class="uploadButton" id="click-trigger">
-        <ion-icon name="images-outline"></ion-icon>
+        <ion-img *ngIf="capturePhoto" src="capturePhoto" id="click-trigger"></ion-img>
+        <ion-img *ngIf="!capturePhoto" src="../../../assets/icon/camera.png" id="click-trigger"></ion-img>
       </ion-button>
     </ion-item>
   
@@ -52,8 +53,8 @@
 <ion-popover trigger="click-trigger" triggerAction="click">
   <ng-template>
     <ion-content>
-      <ion-item button> Subir Imagen </ion-item>
-      <ion-item button> Agregar imagen</ion-item>
+      <ion-item button (click) = "pickPhoto()"> Subir Imagen </ion-item>
+      <ion-item button (click) = "takePhoto()"> Agregar imagen</ion-item>
     </ion-content>
   </ng-template>
 </ion-popover>

@@ -36,10 +36,10 @@
     <ion-searchbar placeholder="¿Que te apecete tomar hoy?"></ion-searchbar>
     <ion-list class="myList">
       <ion-item *ngFor="let p of product" [routerLink]="['/upload-product', p.id]">
+        <ion-avatar slot="start">
+          <img *ngIf="p.filename" src="http://localhost:8080/Images/{{p.filename}}" alt="producto">
+        </ion-avatar>
         <ion-label>
-          <ion-avatar slot="start" class="avatar">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
           <h1>{{p.nameProduct}}</h1>
           <p>{{p.detailsProduct}}</p>
           <h2>{{p.priceProduct}} €</h2>

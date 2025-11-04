@@ -8,24 +8,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="formUsers">
+  <form [formGroup]="registerForm" (ngSubmit)="createClient()" class="formUsers">
 
     <ion-item lines="none">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="name" lines="none"></ion-input>
+      <ion-input formControlName="nameClient"></ion-input>
+    </ion-item>
+
+     <ion-item lines="none">
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input formControlName="usernameClient"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label position="floating" lines="none">Correo</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-input type="email" formControlName="emailClient"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label position="floating" lines="none">Contraseña</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input type="password" formControlName="passwordClient"></ion-input>
     </ion-item>
 
-    <ion-button fill="clear" expand="block" type="submit" [disabled]="!registerForm.valid">
+    <ion-button fill="clear" expand="block" type="submit">
       Registrarse
     </ion-button>
 

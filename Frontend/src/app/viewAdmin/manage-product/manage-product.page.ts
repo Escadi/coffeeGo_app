@@ -22,24 +22,13 @@ export class ManageProductPage implements OnInit {
 
 
   ngOnInit() {
-    this.getAllProduct();
-    this.ionViewWillEnter();
   }
 
 
   ionViewWillEnter() {
-    this.loadProduct();
+    this.getAllProduct();
   }
 
-
-
-  loadProduct() {
-    this.productService.getProduct().subscribe(
-      {
-        next: (res) => this.product = res
-
-      });
-  }
 
   /**
    *  --------------------------------------------------------------

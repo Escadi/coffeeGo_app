@@ -9,6 +9,9 @@
     <ion-searchbar placeholder="Busca tu producto favorito"></ion-searchbar>
 
     <ion-item *ngFor="let p of product ; let i = index">
+      <ion-avatar slot="start">
+        <img *ngIf="p.filename" src="http://localhost:8080/Images/{{p.filename}}" alt="producto">
+      </ion-avatar>
       <ion-label>
         <h1>{{p.nameProduct}}</h1>
         <h3>{{p.detailsProduct}}</h3>
