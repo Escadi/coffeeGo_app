@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CoffeeGoServices {
 
-  endPointClients = "http://localhost:8080/api/client"
+  endPointClients = "http://localhost:8080/api/clients"
   endPointProducts = "http://localhost:8080/api/product"
   endPointCategories = "http://localhost:8080/api/category"
 
@@ -25,20 +25,15 @@ export class CoffeeGoServices {
     return this.httpClient.get(this.endPointProducts);
   }
 
-  createProduct(product: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
+  createProduct(product: any , blob: any) {
+    let formData = new FormData();
+    formData.append("nameProduct", product.nameProduct);
+    formData.append("detailsProduct", product.detailsProduct);
+    formData.append("priceProduct", product.priceProduct);
+    formData.append("idCategory", product.idCategory);
+    formData.append("file", blob);
 
-    const body = new URLSearchParams();
-
-    body.append("nameProduct", product.nameProduct);
-    body.append("detailsProduct", product.detailsProduct);
-    body.append("priceProduct", product.priceProduct);
-    body.append("idCategory", product.idCategory);
-
-    return this.httpClient.post(this.endPointProducts, body.toString(), { headers });
-
+    return this.httpClient.post(this.endPointProducts, formData);
   }
 
   updateProduct(id: number, product: any) {
@@ -68,6 +63,7 @@ export class CoffeeGoServices {
    * |                     SERVICE FOR CATEGORY                     |
    *  --------------------------------------------------------------
    */
+
   getCategory() {
     return this.httpClient.get(this.endPointCategories);
   }
@@ -77,6 +73,24 @@ export class CoffeeGoServices {
    * |                      SERVICE FOR CLIENTS                    |
    *  --------------------------------------------------------------
    */
+
+
+  getClient(){
+    return this.httpClient.get(this.endPointClients)
+  }
+
+  createClient(client: any){
+
+    let formData = new FormData();
+
+    formData.append("nameClient", client.nameClient);
+    formData.append("usernameClient", client.usernameClient);
+    formData.append("emailClient",client.emailClient);
+    formData.append("passwordClient", client.passwordClient);
+    formData.append("rolUserClient", client.rolUserClient);
+
+    return this.httpClient.post(this.endPointClients,formData);
+  }
 
   /**
    *  --------------------------------------------------------------

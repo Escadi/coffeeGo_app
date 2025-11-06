@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
+import { PhotoService } from 'src/app/services/photo-service';
 
 @Component({
   selector: 'app-add-product',
@@ -15,10 +16,13 @@ export class AddProductPage implements OnInit {
 
   productForm: FormGroup;
   category: any = [];
+  capturePhoto: string = "";
+  isSummitted: Boolean = false;
 
   constructor(
     public formBuilder: FormBuilder,
     private productService: CoffeeGoServices,
+    private photoService: PhotoService,
     private router: Router,
     private alertController: AlertController,
     private navControl: NavController
@@ -41,21 +45,24 @@ export class AddProductPage implements OnInit {
    *  --------------------------------------------------------------------------------------
    */
   async alertAdd() {
-    const alert = await this.alertController.create({
-      header: 'exito',
-      message: 'Producto añadido correctamente',
-      buttons: [
-        {
-          text:'OK',
-          handler: () => {
-            this.productForm.reset();
-            this.navControl.navigateBack('manage-product');
-          }
+  const alert = await this.alertController.create({
+    header: 'Éxito',
+    message: 'Producto añadido correctamente',
+    buttons: [
+      {
+        text: 'OK',
+        handler: async () => {
+          this.productForm.reset();
+          this.capturePhoto = "";
+          await this.router.navigateByUrl("/manage-product");
+          // Refresca los datos de la página destino
+          window.location.reload();
         }
-      ]
-    });
-    await alert.present();
-  }
+      }
+    ]
+  });
+  await alert.present();
+}
 
   /**
    *  --------------------------------------------------------------
@@ -64,20 +71,26 @@ export class AddProductPage implements OnInit {
    */
 
   //Product
-createProduct() {
-  if (this.productForm.valid) {
-    this.productService.createProduct(this.productForm.value).subscribe({
-      next: async (response) => {
-        await this.alertAdd();
-      },
-      error: (err) => {
-        console.error('Error al crear el producto', err);
+  async createProduct() {
+    this.isSummitted = true;
+    if (!this.productForm.valid) {
+      console.log('Please provide all the required values!')
+      return;
+    } else {
+      let blob = null;
+      if (this.capturePhoto != "") {
+        const response = await fetch(this.capturePhoto);
+        blob = await response.blob();
       }
-    });
-  } else {
-    console.log("Formulario no válido");
+
+      this.productService.createProduct(this.productForm.value, blob).subscribe({
+       next: async (data) =>{
+        await this.alertAdd();
+       }
+      });
+      
+    }
   }
-}
 
   getFormControl(field: string) {
     return this.productForm.get(field);
@@ -90,6 +103,24 @@ createProduct() {
       this.category = response
     });
   }
+
+  /**
+   *  --------------------------------------------------------------
+   * |                       ADD PICTURES                           |
+   *  --------------------------------------------------------------
+   */
+
+  takePhoto() {
+    this.photoService.takePhoto().then(data => {
+      this.capturePhoto = data.webPath ? data.webPath : "";
+    });
+  }
+  pickPhoto() {
+    this.photoService.pickImage().then(data => {
+      this.capturePhoto = data.webPath;
+    });
+  }
+
 
 }
 

@@ -13,14 +13,16 @@ exports.create = (req, res) => {
     nameProduct: req.body.nameProduct,
     detailsProduct: req.body.detailsProduct,
     priceProduct: req.body.priceProduct,
+    filename: req.file ? req.file.filename : "",
     idCategory: req.body.idCategory
   };
+
   Product.create(product)
     .then((data) => {
       res.send(data);
 
     }).catch((err) => {
-      err.status(500).send({
+      res.status(500).send({
         message: err.message || "Some error occurred while creating the Product."
       });
 
