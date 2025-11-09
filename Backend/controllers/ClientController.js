@@ -1,5 +1,7 @@
 const db = require("../models");
 const Client = db.client;
+const untils = require("../utils");
+const bcrypt = require("bcryptjs");
 
 
 exports.create = (req, res) => {
@@ -18,16 +20,44 @@ exports.create = (req, res) => {
     };
 
 
-    Client.create(client)
+    Client.findOne({ where: { emailClient: client.emailClient } })
+    .then(data => {
+      if (data) {
+        const result = bcrypt.compareSync(client.emailClient, data.emailClient);
+        if (!result) return res.status(401).send('Password not valid!');
+        const token = utils.generateToken(data);
+        // get basic user details
+        const userObj = utils.getCleanUser(data);
+        // return the token along with user details
+        return res.json({ user: userObj, access_token: token });
+      }
+
+      client.emailClient = bcrypt.hashSync(req.body.passwordClient);
+
+      // User not found. Save new User in the database
+      Client.create(user)
         .then(data => {
-            res.send(data);
+          const token = utils.generateToken(data);
+          // get basic user details
+          const userObj = utils.getCleanUser(data);
+          // return the token along with user details
+          return res.json({ user: userObj, access_token: token });
         })
         .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error ocurred while creating the Client."
-            });
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the User."
+          });
         });
+
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+
 };
 
 
@@ -43,6 +73,7 @@ exports.findAll = (req, res) => {
             })
         })
 };
+
 
 exports.update = (req, res) => {
     const id = req.params.id;

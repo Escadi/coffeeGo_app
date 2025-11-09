@@ -4,8 +4,9 @@ module.exports = app => {
     var router = require("express").Router();
 
     router.post("/", client.create);
-    router.get("/", client.findAll);
-    router.put("/:id", client.update);
+    router.get("/", authorization.isAuthenticated, client.findAll);
+    router.get("/:id", authorization.isAuthenticated, client.findOne);
+    router.put("/:id", authorization.isAuthenticated, client.update);
     router.delete("/:id", client.delete);
 
     app.use("/api/clients", router);

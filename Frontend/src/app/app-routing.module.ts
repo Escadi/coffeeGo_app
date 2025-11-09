@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'login-users',
-    loadChildren: () => import('./login-users/login-users.module').then( m => m.LoginUsersPageModule)
+    loadChildren: () => import('./auth/login-users/login-users.module').then( m => m.LoginUsersPageModule)
   },
   {
     path: 'tab-admin',
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'client-form',
-    loadChildren: () => import('./client-form/client-form.module').then( m => m.ClientFormPageModule)
+    loadChildren: () => import('./auth/client-form/client-form.module').then( m => m.ClientFormPageModule)
   },
   {
     path: 'add-product',

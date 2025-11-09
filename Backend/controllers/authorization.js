@@ -13,7 +13,7 @@ exports.signin = (req, res) => {
         return res.status(400).json({ error: true, message: "Email and password are required" });
     }
 
-    client.findOne({ where: { email: client } })
+    client.findOne({ where: { emailClient: client } })
         .then(data => {
             const result = bcrypt.compareSync(password, data.password);
             if (!result) return res.status(401).send('Password not valid!');
