@@ -1,7 +1,7 @@
 const db = require("../models");
 const Client = db.client;
 const bcrypt = require("bcrypt");
-const utils = require("../utils");
+const utils = require("../untils.js");
 
 exports.create = async (req, res) => {
   try {
