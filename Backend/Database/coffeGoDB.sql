@@ -28,3 +28,7 @@ VALUES
 ('Frappé de Caramelo', 'Bebida helada de café con salsa de caramelo y nata.', 4.50, 5),
 ('Frappé de Chocolate', 'Batido de chocolate con hielo y crema.', 5.60, 5);
 
+INSERT INTO client (nameClient, usernameClient, emailClient, passwordClient,rolUserClient) 
+VALUES
+('Eliu','Viera Lorenzo', 'admin@admin.com', '$2a$12$.spuq0gwvtGtNVQ7BLrK8ehWlKgr1XqJH59yduMFylA.G2P5cj1Xe','admin'); 
+

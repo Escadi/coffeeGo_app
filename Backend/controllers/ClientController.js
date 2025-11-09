@@ -1,126 +1,91 @@
 const db = require("../models");
 const Client = db.client;
-const untils = require("../utils");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
+const utils = require("../utils");
 
-
-exports.create = (req, res) => {
-    if (!req.body.nameClient) {
-        res.status(400).send({
-            message: "Contend can not be empty"
-        });
-        return;
+exports.create = async (req, res) => {
+  try {
+    if (!req.body.nameClient || !req.body.passwordClient || !req.body.emailClient) {
+      return res.status(400).send({ message: "All fields are required" });
     }
-    const client = {
-        nameClient: req.body.nameClient,
-        usernameClient: req.body.usernameClient,
-        emailClient: req.body.emailClient,
-        passwordClient: req.body.passwordClient,
-        rolUserClient: req.body.rolUserClient
-    };
 
+    // Verificar si ya existe un cliente con el mismo email
+    const existingClient = await Client.findOne({ where: { emailClient: req.body.emailClient } });
+    if (existingClient) {
+      return res.status(400).send({ message: "Email already registered" });
+    }
 
-    Client.findOne({ where: { emailClient: client.emailClient } })
-    .then(data => {
-      if (data) {
-        const result = bcrypt.compareSync(client.emailClient, data.emailClient);
-        if (!result) return res.status(401).send('Password not valid!');
-        const token = utils.generateToken(data);
-        // get basic user details
-        const userObj = utils.getCleanUser(data);
-        // return the token along with user details
-        return res.json({ user: userObj, access_token: token });
-      }
+    // Hashear la contraseña
+    const hashedPassword = await bcrypt.hash(req.body.passwordClient, 10);
 
-      client.emailClient = bcrypt.hashSync(req.body.passwordClient);
-
-      // User not found. Save new User in the database
-      Client.create(user)
-        .then(data => {
-          const token = utils.generateToken(data);
-          // get basic user details
-          const userObj = utils.getCleanUser(data);
-          // return the token along with user details
-          return res.json({ user: userObj, access_token: token });
-        })
-        .catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the User."
-          });
-        });
-
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-      });
+    // Crear el nuevo cliente
+    const newClient = await Client.create({
+      nameClient: req.body.nameClient,
+      usernameClient: req.body.usernameClient,
+      emailClient: req.body.emailClient,
+      passwordClient: hashedPassword,
+      rolUserClient: req.body.rolUserClient
     });
 
+    // Generar token (si tienes utils)
+    const token = utils ? utils.generateToken(newClient) : "token_demo";
+    const userObj = utils ? utils.getCleanUser(newClient) : newClient;
+
+    res.json({ user: userObj, access_token: token });
+
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while creating the client."
+    });
+  }
 };
 
-
-exports.findAll = (req, res) => {
-    Client.findAll()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error ocurred while show the client."
-            })
-        })
+exports.findAll = async (req, res) => {
+  try {
+    const data = await Client.findAll();
+    res.send(data);
+  } catch (err) {
+    res.status(500).send({ message: err.message || "Error retrieving clients." });
+  }
 };
 
-
-exports.update = (req, res) => {
+exports.findOne = async (req, res) => {
+  try {
     const id = req.params.id;
-
-    Client.update(req.body, { 
-        where: { id: id }
-    })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Client was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update Client with id=${id}. Maybe Client was not found or req.body is empty!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error ocurred while creating the bicycle."
-            })
-        });
+    const client = await Client.findByPk(id);
+    if (!client) return res.status(404).send({ message: "Client not found" });
+    res.send(client);
+  } catch (err) {
+    res.status(500).send({ message: err.message || "Error retrieving client." });
+  }
 };
-exports.delete = (req, res) => {
+
+exports.update = async (req, res) => {
+  try {
     const id = req.params.id;
-    Client.destroy({ 
-        where: { id: id }
- })
-        .then(num => {
-            if (num === 1) {
-                res.send({
-                    message: "Client was deleted successfully!"
-                });
-            } else {
-                res.send({
-                    message: `Cannot delete Client with id=${id}. Maybe Client was not found!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error ocurred while creating the bicycle."
-            })
-        });
+    const [num] = await Client.update(req.body, { where: { id } });
+    if (num === 1) {
+      res.send({ message: "Client was updated successfully." });
+    } else {
+      res.send({ message: `Cannot update Client with id=${id}.` });
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message || "Error updating client." });
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const num = await Client.destroy({ where: { id } });
+    if (num === 1) {
+      res.send({ message: "Client was deleted successfully!" });
+    } else {
+      res.send({ message: `Cannot delete Client with id=${id}. Maybe not found.` });
+    }
+  } catch (err) {
+    res.status(500).send({ message: err.message || "Error deleting client." });
+  }
 };
 
 

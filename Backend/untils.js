@@ -1,17 +1,36 @@
 var jwt = require('jsonwebtoken');
 
-exports.generateToken = function (user) {
-    if(!user) return null;
+function generateToken(user) {
+  if (!user) return null;
 
-    var myUser = {
-        id: user.id,
-        nameClient: user.nameClient,
-        usernameClient: user.usernameClient,
-        emailClient: user.emailClient,
-        passwordClient: user.passwordClient,
-        rolUserClient: user.rolUserClient
-    };
-    return jwt.sign(myUser, process.env.JWT_SECRET, {
-        expiresIn: 60*60*24 // expires in 24 hours
-    });
+  var u = {
+    id: user.id,
+    name: user.nameClient,
+    username: user.usernameClient,
+    email: user.emailClient,
+    password: user.passwordClient,
+    rolUser: user.rolUserClient
+  };
+
+  return jwt.sign(u, process.env.JWT_SECRET, {
+    expiresIn: 60 * 60 * 24 // expires in 24 hours
+  });
+}
+
+function getCleanUser(user) {
+  if (!user) return null;
+
+  return {
+    id: user.id,
+    name: user.nameClient,
+    username: user.usernameClient,
+    email: user.emailClient,
+    password: user.passwordClient,
+    rolUser: user.rolUserClient
+  };
+}
+
+module.exports = {
+  generateToken,
+  getCleanUser
 };

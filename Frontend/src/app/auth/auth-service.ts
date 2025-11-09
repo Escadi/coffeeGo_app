@@ -45,7 +45,7 @@ export class AuthService {
 
   register(user: Client): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(
-      `${this.AUTH_SERVER_ADDRESS}/api/client`,
+      `${this.AUTH_SERVER_ADDRESS}/api/clients`,
       user,
       this.getOptions(user)
     ).pipe(
@@ -59,7 +59,7 @@ export class AuthService {
 
   login(user: Client): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(
-      `${this.AUTH_SERVER_ADDRESS}/api/client/login-users`,
+      `${this.AUTH_SERVER_ADDRESS}/api/clients/login-users`,
       user,
       this.getOptions(user)
     ).pipe(

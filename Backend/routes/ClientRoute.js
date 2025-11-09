@@ -1,5 +1,9 @@
 module.exports = app => {
     const client = require("../controllers/ClientController.js");
+    console.log("ClientRoute loaded...", client);
+    const authorization = require("../controllers/authorization.js");
+    console.log("Authorization loaded...", authorization);
+    
 
     var router = require("express").Router();
 

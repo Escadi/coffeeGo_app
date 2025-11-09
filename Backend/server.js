@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
 
 
 
-const db = require('./models');
+const db = require('../Backend/models');
 
 
 db.sequelize.sync();

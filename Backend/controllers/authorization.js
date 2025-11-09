@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const utils = require('../utils');
+const bcrypt = require('bcrypt');
+const utils = require('../untils');
 const db = require('../models');
 const client = db.Client;
 
