@@ -6,16 +6,16 @@ const client = db.Client;
 
 
 exports.signin = (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.body.emailClient;
+    const password = req.body.passwordClient;
 
     if (!email || !password) {
         return res.status(400).json({ error: true, message: "Email and password are required" });
     }
 
-    client.findOne({ where: { emailClient: client } })
+    client.findOne({ where: { emailClient: emailClient } })
         .then(data => {
-            const result = bcrypt.compareSync(password, data.password);
+            const result = bcrypt.compareSync(password, data.passwordClient);
             if (!result) return res.status(401).send('Password not valid!');
 
 
@@ -33,39 +33,47 @@ exports.signin = (req, res) => {
         });
 };
 
-exports.isAuthenticated = (req, res, next) => {
+exports.isAuthenticated = async (req, res, next) => {
+  try {
+    // Obtener token del header Authorization
+    let token = req.token;
 
-    var token = req.token;
-    if (!token) {
-        return res.status(400).json({
-            error: true,
-            message: "Token is required."
-        });
+    if (!token && req.headers.authorization) {
+      const authHeader = req.headers.authorization;
+      if (authHeader.startsWith("Bearer ")) {
+        token = authHeader.slice(7, authHeader.length); // quitar "Bearer "
+      }
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-        if (err) return res.status(401).json({
-            error: true,
-            message: "Invalid token."
-        });
+    if (!token) {
+      return res.status(400).json({
+        error: true,
+        message: "Token is required"
+      });
+    }
 
-        client.findByPk(Client.id)
-            .then(data => {
+    // Verificar token con la clave secreta
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-                if (!user.id) {
-                    return res.status(401).json({
-                        error: true,
-                        message: "Invalid user."
-                    });
-                }
+    // Buscar usuario en la base de datos
+    const user = await Client.findByPk(decoded.id);
 
-                next();
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: "Error retrieving User with id=" + id
-                });
-            });
+    if (!user) {
+      return res.status(401).json({
+        error: true,
+        message: "User not found"
+      });
+    }
+
+    // Guardar usuario en la request
+    req.user = user;
+    next();
+
+  } catch (err) {
+    return res.status(401).json({
+      error: true,
+      message: "Invalid or expired token",
+      details: err.message
     });
-
+  }
 };

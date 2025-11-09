@@ -14,29 +14,30 @@ module.exports = (sequelize, Sequelize) => {
         },
         rolUserClient: {
             type: Sequelize.STRING,
-            defaultValue: "user"
+            allowNull: false,
+            defaultValue: "USER"
         }
     });
 
-     /**
-    *  ---------------------------------------------------------------------------------
-    * |                                 RELACIONSHIPS                                   |
-    *  ---------------------------------------------------------------------------------
-    */
+    /**
+   *  ---------------------------------------------------------------------------------
+   * |                                 RELACIONSHIPS                                   |
+   *  ---------------------------------------------------------------------------------
+   */
 
     client.associate = (models) => {
         //is going to
-        client.hasMany(models.ShoppingCartModel,{
-            foreignKey:"idClient",
-            as:"shoppingCart"
+        client.hasMany(models.ShoppingCartModel, {
+            foreignKey: "idClient",
+            as: "shoppingCart"
         });
-          client.hasMany(models.DetailsShoppingCartModel,{
-            foreignKey:"idClient",
-            as:"detailsShoppingCart"
+        client.hasMany(models.DetailsShoppingCartModel, {
+            foreignKey: "idClient",
+            as: "detailsShoppingCart"
         });
-          client.hasMany(models.OrderModel,{
-            foreignKey:"idClient",
-            as:"order"
+        client.hasMany(models.OrderModel, {
+            foreignKey: "idClient",
+            as: "order"
         });
 
     };

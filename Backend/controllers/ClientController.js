@@ -5,38 +5,36 @@ const utils = require("../untils.js");
 
 exports.create = async (req, res) => {
   try {
-    if (!req.body.nameClient || !req.body.passwordClient || !req.body.emailClient) {
-      return res.status(400).send({ message: "All fields are required" });
+    // Obtener credenciales desde cabecera Basic Auth
+    const email = req.body.emailClient || req.body.email;
+    const password = req.body.passwordClient || req.body.password;
+
+    if (!email || !password) {
+      return res.status(400).send({ message: "Email and password are required" });
     }
 
-    // Verificar si ya existe un cliente con el mismo email
-    const existingClient = await Client.findOne({ where: { emailClient: req.body.emailClient } });
+    const existingClient = await Client.findOne({ where: { emailClient: email } });
     if (existingClient) {
       return res.status(400).send({ message: "Email already registered" });
     }
 
-    // Hashear la contraseña
-    const hashedPassword = await bcrypt.hash(req.body.passwordClient, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear el nuevo cliente
     const newClient = await Client.create({
       nameClient: req.body.nameClient,
       usernameClient: req.body.usernameClient,
-      emailClient: req.body.emailClient,
+      emailClient: email,
       passwordClient: hashedPassword,
       rolUserClient: req.body.rolUserClient
     });
 
-    // Generar token (si tienes utils)
-    const token = utils ? utils.generateToken(newClient) : "token_demo";
-    const userObj = utils ? utils.getCleanUser(newClient) : newClient;
+    const token = utils.generateToken(newClient);
+    const userObj = utils.getCleanUser(newClient);
 
     res.json({ user: userObj, access_token: token });
 
   } catch (err) {
-    res.status(500).send({
-      message: err.message || "Some error occurred while creating the client."
-    });
+    res.status(500).send({ message: err.message || "Error creating client." });
   }
 };
 

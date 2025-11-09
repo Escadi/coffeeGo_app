@@ -1,20 +1,13 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 function generateToken(user) {
-  if (!user) return null;
-
-  var u = {
+  const payload = {
     id: user.id,
-    name: user.nameClient,
-    username: user.usernameClient,
     email: user.emailClient,
-    password: user.passwordClient,
-    rolUser: user.rolUserClient
+    role: user.rolUserClient
   };
 
-  return jwt.sign(u, process.env.JWT_SECRET, {
-    expiresIn: 60 * 60 * 24 // expires in 24 hours
-  });
+  return jwt.sign(payload, process.env.JWT_SECRET || "clave_temporal", { expiresIn: "1h" });
 }
 
 function getCleanUser(user) {
@@ -22,15 +15,12 @@ function getCleanUser(user) {
 
   return {
     id: user.id,
-    name: user.nameClient,
-    username: user.usernameClient,
-    email: user.emailClient,
-    password: user.passwordClient,
-    rolUser: user.rolUserClient
+    nameClient: user.nameClient,
+    usernameClient: user.usernameClient,
+    emailClient: user.emailClient,
+    passwordClient: user.passwordClient,
+    rolUserClient: user.rolUserClient
   };
 }
 
-module.exports = {
-  generateToken,
-  getCleanUser
-};
+module.exports = { generateToken, getCleanUser };

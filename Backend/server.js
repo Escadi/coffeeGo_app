@@ -20,49 +20,28 @@ app.use(express.urlencoded({ extended: true }));
  * |              AUTHENTIFACTION BASIC 64 FOR ALL DATA                |
  *  ------------------------------------------------------------------- 
  */
-app.use(function (req, res, next) {
-  var token = req.headers['authorization'];
-  if (!token) return next(); 
+app.use((req, res, next) => {
+  const auth = req.headers.authorization;
+  if (!auth) return next();
 
-  if(req.headers.authorization.indexOf('Basic ') === 0){
-   
-    const base64Credentials =  req.headers.authorization.split(' ')[1];
-    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
-    const [email, password] = credentials.split(':');
-
+  if (auth.startsWith('Basic ')) {
+    const [email, password] = Buffer.from(auth.split(' ')[1], 'base64').toString().split(':');
     req.body.email = email;
     req.body.password = password;
-
-    return next();
   }
 
-  token = token.replace('Bearer ', '');
- 
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-    if (err) {
-      return res.status(401).json({
-        error: true,
-        message: "Invalid user."
-      });
-    } else {
-      req.user = user; 
-      req.token = token;
-      next();
-    }
-  });
+  next();
 });
-
-
 
 
 const db = require('../Backend/models');
 
 
-db.sequelize.sync();
+//db.sequelize.sync();
 
-//db.sequelize.sync({ force: true }).then(() => {
-//    console.log("Drop and re-sync db");
-//});
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db");
+});
 
 
 app.get('/', (req, res) => {
