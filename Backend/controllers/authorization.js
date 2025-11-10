@@ -2,20 +2,23 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const utils = require('../untils');
 const db = require('../models');
-const client = db.Client;
+const Client = db.client;
 
-
+/** -------------------------------------------------------------------
+ * |              EXPORT FOR LOGIN USER IN (LOGIN_USER)                |
+ *  ------------------------------------------------------------------- 
+ */
 exports.signin = (req, res) => {
-    const email = req.body.emailClient;
-    const password = req.body.passwordClient;
+    const email = req.body.email;
+    const password = req.body.password;
 
     if (!email || !password) {
         return res.status(400).json({ error: true, message: "Email and password are required" });
     }
 
-    client.findOne({ where: { emailClient: emailClient } })
+    Client.findOne({ where: { emailClient: email } })
         .then(data => {
-            const result = bcrypt.compareSync(password, data.passwordClient);
+            const result = bcrypt.compareSync(password, data.password);
             if (!result) return res.status(401).send('Password not valid!');
 
 
@@ -24,6 +27,7 @@ exports.signin = (req, res) => {
             const userObj = utils.getCleanUser(data);
 
             return res.json({ user: userObj, access_token: token });
+
         })
         .catch(err => {
             res.status(500).send({
@@ -32,48 +36,42 @@ exports.signin = (req, res) => {
             });
         });
 };
+/** -------------------------------------------------------------------
+ * |              AUTHENTIFACTION BEARER TO CREATE TOKEN               |
+ *  ------------------------------------------------------------------- 
+ */
+exports.isAuthenticated = (req, res, next) => {
 
-exports.isAuthenticated = async (req, res, next) => {
-  try {
-    // Obtener token del header Authorization
-    let token = req.token;
-
-    if (!token && req.headers.authorization) {
-      const authHeader = req.headers.authorization;
-      if (authHeader.startsWith("Bearer ")) {
-        token = authHeader.slice(7, authHeader.length); // quitar "Bearer "
-      }
-    }
-
+    var token = req.token;
     if (!token) {
-      return res.status(400).json({
-        error: true,
-        message: "Token is required"
-      });
+        return res.status(400).json({
+            error: true,
+            message: "Token is required."
+        });
     }
 
-    // Verificar token con la clave secreta
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Buscar usuario en la base de datos
-    const user = await Client.findByPk(decoded.id);
-
-    if (!user) {
-      return res.status(401).json({
-        error: true,
-        message: "User not found"
-      });
-    }
-
-    // Guardar usuario en la request
-    req.user = user;
-    next();
-
-  } catch (err) {
-    return res.status(401).json({
-      error: true,
-      message: "Invalid or expired token",
-      details: err.message
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        if (err) return res.status(401).json({
+            error: true,
+            message: "Invalid token."
+        });
+        try {
+            const foundUser = await Client.findByPk(decoded.id)
+            if (!foundUser) {
+                return res.status(401).json({
+                    error: true,
+                    message: "Invalid user."
+                });
+            }
+            req.user = foundUser;
+            next();
+        } catch (error) {
+            return res.status(500).json({
+                error: true,
+                message: "Error retrieving user."
+            });
+        }
     });
-  }
+
+
 };

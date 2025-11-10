@@ -8,6 +8,7 @@ const sequelize = new Sequelize(
     {
         host: configDB.HOST,
         dialect: configDB.dialect,
+        logging: false,
         define: {
             freezeTableName: true,
             timestamps: false

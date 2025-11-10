@@ -3,11 +3,18 @@ const Client = db.client;
 const bcrypt = require("bcrypt");
 const utils = require("../untils.js");
 
+
+/** -------------------------------------------------------------------
+ * |                CREATE USER WHIT BCRYPT PASSWORD                   |
+ *  ------------------------------------------------------------------- 
+ */
 exports.create = async (req, res) => {
   try {
-    // Obtener credenciales desde cabecera Basic Auth
     const email = req.body.emailClient || req.body.email;
     const password = req.body.passwordClient || req.body.password;
+    
+    console.log("Creating client with email:", email);
+    console.log("Creating client with password:", password);
 
     if (!email || !password) {
       return res.status(400).send({ message: "Email and password are required" });
@@ -32,12 +39,19 @@ exports.create = async (req, res) => {
     const userObj = utils.getCleanUser(newClient);
 
     res.json({ user: userObj, access_token: token });
+    console.log("Client created successfully:", newClient);
+    console.log("Generated token:", token);
 
   } catch (err) {
     res.status(500).send({ message: err.message || "Error creating client." });
   }
 };
 
+
+/** -------------------------------------------------------------------
+ * |            GET FOR ALL CLIENTS AND FIND ONE CLIENT               |
+ *  ------------------------------------------------------------------- 
+ */
 exports.findAll = async (req, res) => {
   try {
     const data = await Client.findAll();
@@ -57,7 +71,10 @@ exports.findOne = async (req, res) => {
     res.status(500).send({ message: err.message || "Error retrieving client." });
   }
 };
-
+/** -------------------------------------------------------------------
+ * |                          UPDATE CLIENT                            |
+ *  ------------------------------------------------------------------- 
+ */
 exports.update = async (req, res) => {
   try {
     const id = req.params.id;
@@ -71,6 +88,11 @@ exports.update = async (req, res) => {
     res.status(500).send({ message: err.message || "Error updating client." });
   }
 };
+
+/** -------------------------------------------------------------------
+ * |                            DELETE CLIENT                         |
+ *  ------------------------------------------------------------------- 
+ */
 
 exports.delete = async (req, res) => {
   try {

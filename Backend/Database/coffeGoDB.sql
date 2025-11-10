@@ -30,5 +30,5 @@ VALUES
 
 INSERT INTO client (nameClient, usernameClient, emailClient, passwordClient,rolUserClient) 
 VALUES
-('Eliu','Viera Lorenzo', 'admin@admin.com', '$2a$12$.spuq0gwvtGtNVQ7BLrK8ehWlKgr1XqJH59yduMFylA.G2P5cj1Xe','admin'); 
+('Eliu','Viera Lorenzo', 'admin@admin.com', '$2a$12$.spuq0gwvtGtNVQ7BLrK8ehWlKgr1XqJH59yduMFylA.G2P5cj1Xe','true'); 
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 
 @Component({
   selector: 'app-order',
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private orderService : CoffeeGoServices,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

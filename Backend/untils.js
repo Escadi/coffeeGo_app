@@ -1,5 +1,10 @@
+
 const jwt = require('jsonwebtoken');
 
+/** -------------------------------------------------------------------
+ * |                    GENERATED TOKEN WHIT JWT                       |
+ *  ------------------------------------------------------------------- 
+ */
 function generateToken(user) {
   const payload = {
     id: user.id,
@@ -7,8 +12,13 @@ function generateToken(user) {
     role: user.rolUserClient
   };
 
-  return jwt.sign(payload, process.env.JWT_SECRET || "clave_temporal", { expiresIn: "1h" });
+  return jwt.sign(payload, process.env.JWT_SECRET||"clave_temporal",{ expiresIn: "24h" });
 }
+
+/** -------------------------------------------------------------------
+ * |                 CLEAN AND SEND TO POSTMAN DATA                    |
+ *  ------------------------------------------------------------------- 
+ */
 
 function getCleanUser(user) {
   if (!user) return null;
@@ -18,7 +28,6 @@ function getCleanUser(user) {
     nameClient: user.nameClient,
     usernameClient: user.usernameClient,
     emailClient: user.emailClient,
-    passwordClient: user.passwordClient,
     rolUserClient: user.rolUserClient
   };
 }

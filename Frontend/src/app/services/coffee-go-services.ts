@@ -9,6 +9,7 @@ export class CoffeeGoServices {
   endPointClients = "http://localhost:8080/api/clients"
   endPointProducts = "http://localhost:8080/api/product"
   endPointCategories = "http://localhost:8080/api/category"
+  endPointOrders= "http://localhost:8080/api/order"
 
   constructor(
     private httpClient: HttpClient
@@ -97,6 +98,9 @@ export class CoffeeGoServices {
    * |                      SERVICE FOR ORDERS                      |
    *  --------------------------------------------------------------
    */
+  getOrders(){
+    return this.httpClient.get(this.endPointOrders);
+  }
 
   /**
    *  --------------------------------------------------------------
