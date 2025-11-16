@@ -8,7 +8,9 @@ const utils = require("../untils.js");
  * |                CREATE USER WHIT BCRYPT PASSWORD                   |
  *  ------------------------------------------------------------------- 
  */
+
 exports.create = async (req, res) => {
+
   try {
     const email = req.body.emailClient || req.body.email;
     const password = req.body.passwordClient || req.body.password;
@@ -45,6 +47,7 @@ exports.create = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message || "Error creating client." });
   }
+  
 };
 
 

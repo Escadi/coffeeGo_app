@@ -3,6 +3,7 @@ module.exports = (sequelize, Sequelize) => {
         stock: {
             type: Sequelize.INTEGER
         },
+        
         discount: {
             type: Sequelize.INTEGER
         },
@@ -14,6 +15,7 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             }
         },
+
         idShoppingCart: {
             type: Sequelize.INTEGER,
             references: {
@@ -21,6 +23,7 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             }
         },
+
         idClient: {
             type: Sequelize.INTEGER,
             references: {

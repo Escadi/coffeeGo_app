@@ -10,12 +10,18 @@ import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 })
 export class OrderPage implements OnInit {
 
+
+  products : any[] = [];
   constructor(
     private orderService : CoffeeGoServices,
     private router: Router
   ) { }
 
   ngOnInit() {
+  }
+
+  addproductToOrder(){
+    
   }
 
 }
