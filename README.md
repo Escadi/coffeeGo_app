@@ -40,10 +40,10 @@ Permite tanto a administradores como a usuarios acceder a funciones específicas
 
 ## ✨ Características
 
-- 🔐 Registro e inicio de sesión seguros  
-- 🚴 Compra de bicicletas en tiempo real  
-- 🏷️ Filtros avanzados por marca, tipo y precio  
-- 🔔 Notificaciones de ofertas y nuevos modelos  
+- 🔐 Registro e inicio de sesión seguros con encriptación  
+- 🚴 Pedido de productos a tiempo real  
+- 🏷️ Filtros por categoria o nombre del producto  
+- 🔔 Notificaciones una vez terminado el pedido  
 - 💎 Interfaz moderna, minimalista y responsive  
 
 ---
@@ -99,13 +99,13 @@ Algunas funciones pueden no estar disponibles o sujetas a cambios.
 
 **Funcionalidades Activas**
 
-1. ***Iniciar sesión*** – acceso básico sin autenticación (pendiente de seguridad).
+1. ***Iniciar sesión*** – acceso básico con autenticación.
    
-2. ***Gestionar inventario*** – visualizar, buscar o eliminar bicicletas .
+2. ***Gestionar productos*** – visualizar , eliminar , modificar .
    
-3. ***Añadir una nueva bicicleta*** – formulario para registrar nuevos productos.
+3. ***Añadir nuevo producto*** – formulario para registrar nuevos productos.
 
-4. ***Editar información*** – modificar datos existentes de bicicletas.
+4. ***Editar información*** – modificar datos existentes de productos y clientes.
 
 ---
 
@@ -113,11 +113,11 @@ Algunas funciones pueden no estar disponibles o sujetas a cambios.
 
 **1. ¿Se necesita conexión a internet?**
 
-Sí, es necesaria para cargar los productos, gestionar inventario y realizar compras.
+Sí, es necesaria para cargar los productos y realizar pedidos.
 
 **2. ¿Puedo probar la app sin registrarme?**
 
-Sí, puedes ingresar como invitado y explorar el catálogo disponible.
+No, tienes que estar registrado para disfrutar de la experiencia.
 
 **3. ¿Habrá versión móvil oficial?**
 
