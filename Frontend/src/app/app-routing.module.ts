@@ -36,11 +36,6 @@ const routes: Routes = [
     loadChildren: () => import('./viewClient/tab-client/tab-client.module').then( m => m.TabClientPageModule)
   },
 
-  {
-    path: 'tab-barista',
-    loadChildren: () => import('./viewBarista/tab-barista/tab-barista.module').then( m => m.TabBaristaPageModule)
-  },
-
 ];
 
 @NgModule({

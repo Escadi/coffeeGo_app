@@ -9,6 +9,15 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING
         },
+        stock:{
+            type: Sequelize.INTEGER
+        },
+        subtotal:{
+            type: Sequelize.FLOAT
+        },
+        discount:{
+            type: Sequelize.INTEGER
+        },
         idClient: {
             type: Sequelize.INTEGER,
             references: {
@@ -49,10 +58,6 @@ module.exports = (sequelize, Sequelize) => {
         order.hasMany(models.PayModel, {
             foreignKey: "idOrder",
             as: "pay"
-        });
-        order.hasMany(models.DetailsOrderModel, {
-            foreignKey: "idOrder",
-            as: "detailsOrder"
         });
 
 

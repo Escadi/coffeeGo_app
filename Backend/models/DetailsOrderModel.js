@@ -5,20 +5,13 @@ module.exports = (sequelize, Sequelize) => {
         stock: {
             type: Sequelize.INTEGER
         },
-        discount: {
-            type: Sequelize.INTEGER
+        subtotal: {
+            type: Sequelize.FLOAT
         },
         idProduct: {
             type: Sequelize.INTEGER,
             references: {
                 model: "product",
-                key: "id"
-            }
-        },
-        idOrder: {
-            type: Sequelize.INTEGER,
-            references: {
-                model: "order",
                 key: "id"
             }
         },
@@ -47,11 +40,6 @@ module.exports = (sequelize, Sequelize) => {
         detailsOrder.belongsTo(models.ClientModel, {
             foreignKey: "idClient",
             as: "client"
-        });
-
-        detailsOrder.belongsTo(models.OrderModel, {
-            foreignKey: "idOrder",
-            as: "order"
         });
 
     };

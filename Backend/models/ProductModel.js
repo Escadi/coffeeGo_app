@@ -33,11 +33,6 @@ module.exports = (sequelize,Sequelize) => {
             foreigKey:"idCategory",
             as:"category"
         });
-        // IS GOING TO
-        product.hasMany(models.DetailsShoppingCartModel,{
-            foreigKey: "idProduct",
-            as: "detailsShoppingCart"
-        });
         product.hasMany(models.DetailsOrderModel,{
             foreigKey: "idProduct",
             as: "detailsOrder"

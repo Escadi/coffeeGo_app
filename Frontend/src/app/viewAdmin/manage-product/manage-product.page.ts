@@ -16,7 +16,7 @@ export class ManageProductPage implements OnInit {
 
   constructor(
     private productService: CoffeeGoServices,
-    private myMenu: MenuController,
+    
     private router: Router
   ) { }
 
@@ -25,9 +25,7 @@ export class ManageProductPage implements OnInit {
   }
 
 
-  ionViewWillEnter() {
-    this.getAllProduct();
-  }
+ 
 
 
   /**
@@ -52,28 +50,11 @@ export class ManageProductPage implements OnInit {
    *  --------------------------------------------------------------
    */
 
-  openMenu() {
-    this.myMenu.open('mainMenu');
-  }
-  openUploadProduct() {
-    this.router.navigateByUrl("/upload-product")
-  }
+ 
 
-  openNewProduct() {
-    this.router.navigateByUrl("/add-product");
-  }
 
-  async closeSession() {
 
-    this.router.navigateByUrl("\login-users");
-
-    await this.myMenu.close();
-
-    localStorage.clear();
-
-    window.location.reload();
-
-  }
+  
 
 
 }

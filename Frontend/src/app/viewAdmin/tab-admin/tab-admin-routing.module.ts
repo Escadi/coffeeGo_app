@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../manage-order/manage-order.module').then(m => m.ManageOrderPageModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: 'manage-product',
         pathMatch: 'full'
