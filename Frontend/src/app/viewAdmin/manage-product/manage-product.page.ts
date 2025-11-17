@@ -16,16 +16,17 @@ export class ManageProductPage implements OnInit {
 
   constructor(
     private productService: CoffeeGoServices,
-    
     private router: Router
   ) { }
 
 
   ngOnInit() {
+
   }
 
-
- 
+  ionViewWillEnter() {
+    this.getAllProduct();
+  }
 
 
   /**
@@ -50,11 +51,11 @@ export class ManageProductPage implements OnInit {
    *  --------------------------------------------------------------
    */
 
- 
 
 
 
-  
+
+
 
 
 }

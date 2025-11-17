@@ -30,11 +30,11 @@ const routes: Routes = [
   {
     path: 'upload-product/:id',
     loadChildren: () => import('./viewAdmin/upload-product/upload-product.module').then( m => m.UploadProductPageModule)
+  },  {
+    path: 'list-update',
+    loadChildren: () => import('./viewAdmin/list-update/list-update.module').then( m => m.ListUpdatePageModule)
   },
-  {
-    path: 'tab-client',
-    loadChildren: () => import('./viewClient/tab-client/tab-client.module').then( m => m.TabClientPageModule)
-  },
+
 
 ];
 

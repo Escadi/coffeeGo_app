@@ -1,14 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button slot="start" default-href="#" class="btnBack"></ion-back-button>
     <ion-title>Pedidos realizados</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">manage-order</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list class="myList">
+    <ion-searchbar placeholder="Busca tu producto favorito"></ion-searchbar>
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img alt="producto">
+      </ion-avatar>
+      <ion-label>
+        <h1></h1>
+        <h3></h3>
+        <h2></h2>
+      </ion-label>
+
+      <div slot="end" class="buttonsSelection">
+        <ion-button shape="round" fill="clear" (click)="decrement(i)" >
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <ion-input type="number" [(ngModel)]="p.quantity" readonly="true" min="0" value="0"></ion-input>
+        <ion-button shape="round" fill="clear" (click)="increment(i)">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>

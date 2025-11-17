@@ -11,7 +11,7 @@ import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 })
 export class ProfilePage implements OnInit {
 
-    product: any = [];
+  product: any = [];
 
   constructor(
     private router: Router,
@@ -20,13 +20,11 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-  }
-   ionViewWillEnter() {
-    this.getAllProduct();
+
   }
 
-  back(){
+
+  back() {
     this.router.navigateByUrl("/login-users");
   }
 
@@ -36,22 +34,19 @@ export class ProfilePage implements OnInit {
    * |                     CALL APIREST PRODUCT                     |
    *  --------------------------------------------------------------
    */
-  getAllProduct() {
-    this.productService.getProduct().subscribe(
-      {
-        next: (data: any) =>
-          this.product = data
-      });
-  }
 
-   openMenu() {
+
+  openMenu() {
     this.myMenu.open('mainMenu');
   }
   openUploadProduct() {
     this.router.navigateByUrl("/upload-product")
   }
+  openListProductUpdate(){
+    this.router.navigateByUrl("/list-update")
+  }
 
-    openNewProduct() {
+  openNewProduct() {
     this.router.navigateByUrl("/add-product");
   }
   async closeSession() {

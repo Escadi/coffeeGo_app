@@ -7,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   standalone:false
 })
 export class ManageOrderPage implements OnInit {
+  product: any = []
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+   increment(index: number) {
+    this.product[index].quantity++;
+  }
+
+  decrement(index: number) {
+    if (this.product[index].quantity > 0) {
+      this.product[index].quantity--;
+    }
   }
 
 }

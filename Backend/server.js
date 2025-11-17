@@ -73,11 +73,12 @@ app.use((req, res, next) => {
 const db = require('../Backend/models');
 
 
-//db.sequelize.sync();
-
+db.sequelize.sync();
+/*
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db");
 });
+*/
 
 
 app.get('/', (req, res) => {

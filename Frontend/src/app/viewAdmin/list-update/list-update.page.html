@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Menu</ion-title>
+    <ion-back-button slot="start" default-href="#" class="btnBack"></ion-back-button>
+    <ion-title>Gestionar Producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-searchbar placeholder="¿Que te apecete tomar hoy?"></ion-searchbar>
   <ion-list class="myList">
-    <ion-item *ngFor="let p of product">
+    <ion-item *ngFor="let p of product" [routerLink]="['/upload-product', p.id]">
       <ion-avatar slot="start">
         <img *ngIf="p.filename" src="http://localhost:8080/Images/{{p.filename}}" alt="producto">
       </ion-avatar>
@@ -16,9 +17,6 @@
         <p>{{p.detailsProduct}}</p>
         <h2>{{p.priceProduct}} €</h2>
       </ion-label>
-      <ion-button slot="end" color="warning" shape="round">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
