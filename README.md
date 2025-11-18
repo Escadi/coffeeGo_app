@@ -136,7 +136,7 @@ Sí, se publicará un .apk cuando finalice la fase de pruebas.
 
 📄 Colección Postman:
 
-https://documenter.getpostman.com/view/48544649/2sB3QGvC3a
+https://documenter.getpostman.com/view/48544649/2sB3WwrHwM
 
 ---
 ## 🚧 Estado del proyecto
