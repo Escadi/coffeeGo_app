@@ -40,7 +40,7 @@ db.barista = require('./BaristaModel.js')(sequelize, Sequelize);
 db.category = require('./CategoryModel.js')(sequelize, Sequelize);
 db.product = require('./ProductModel.js')(sequelize, Sequelize);
 db.order = require('./OrderModel.js')(sequelize, Sequelize);
-db.detailsOrders = require('./DetailsOrderModel.js')(sequelize, Sequelize);
+db.detailsOrder = require('./DetailsOrderModel.js')(sequelize, Sequelize);
 db.pay = require('./PayModel.js')(sequelize, Sequelize);
 
 

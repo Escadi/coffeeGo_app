@@ -1,5 +1,3 @@
-const { detailsOrders } = require(".");
-
 module.exports = (sequelize, Sequelize) => {
     const detailsOrder = sequelize.define("detailsOrder", {
         stock: {

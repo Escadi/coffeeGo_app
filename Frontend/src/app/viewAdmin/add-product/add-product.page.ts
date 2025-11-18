@@ -25,7 +25,7 @@ export class AddProductPage implements OnInit {
     private photoService: PhotoService,
     private router: Router,
     private alertController: AlertController,
-    private navControl: NavController
+    private navCtrl : NavController
   ) {
     this.productForm = this.formBuilder.group({
       nameProduct: ['', Validators.compose([Validators.required])],
@@ -54,9 +54,7 @@ export class AddProductPage implements OnInit {
         handler: async () => {
           this.productForm.reset();
           this.capturePhoto = "";
-          await this.router.navigateByUrl("/manage-product");
-          // Refresca los datos de la página destino
-          window.location.reload();
+          this.navCtrl.back();
         }
       }
     ]

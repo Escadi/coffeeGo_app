@@ -109,9 +109,14 @@ export class CoffeeGoServices {
 
   /**
    *  --------------------------------------------------------------
-   * |                      SERVICE FOR PAY                         |
+   * |                  SERVICE FOR DETAILSORDER                    |
    *  --------------------------------------------------------------
    */
+
+  
+  getDetailsOrder(){
+    return this.httpClient.get(this.endpointDetailsOrder);
+  }
 
 
 }

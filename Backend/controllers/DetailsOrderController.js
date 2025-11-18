@@ -1,54 +1,48 @@
 const db = require("../models");
-const DetailsOrder = db.DetailsOrderModel;
+const DetailsOrder = db.detailsOrder;
 
 
 // ---------------------------------------------
 // Crear detalle de pedido (sin control de stock)
 // ---------------------------------------------
-exports.create = async (req, res) => {
-    try {
-        const { idProduct, idOrder, idClient, stock, discount } = req.body;
-
-        const detail = await DetailsOrder.create({
-            idProduct,
-            idOrder,
-            idClient,
-            stock,       // Cantidad que quiere el cliente
-            discount
+exports.create = (req, res) => {
+    if(!req.body.idProduct){
+        res.status(400).send({
+            message: "Content can not be empty"
         });
-
-        res.status(201).json({
-            message: "Detalle de pedido añadido correctamente",
-            detalle: detail
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al crear detalle" });
+        return;
     }
+    const detailsOrder = {
+        stock: req.body.stock,
+        subtotal: req.body.subtotal,
+        idProduct: req.body.idProduct,
+        idClient: req.body.idClient,
+
+    }
+    DetailsOrder.create(detailsOrder)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the Details Order."
+        });
+    });
+
 };
 
 // ----------------------------------------------------
 // Obtener lista de detalles de un pedido
 // ----------------------------------------------------
-exports.getAll = async (req, res) => {
-    try {
-        const { idOrder } = req.params;
+ exports.findAll = (req, res) => {
+  DetailsOrder.findAll()
+    .then((data) => {
+      res.send(data);
 
-        const detalles = await DetailsOrder.findAll({
-            where: { idOrder },
-            include: [
-                { model: db.ProductModel, as: "product", attributes: ["nameProduct"] },
-                { model: db.ClientModel, as: "client" },
-                { model: db.OrderModel, as: "order" }
-            ]
-        });
-
-        res.status(200).json(detalles);
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al obtener los detalles" });
-    }
-};
-
+    }).catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving products."
+      });
+    });
+}

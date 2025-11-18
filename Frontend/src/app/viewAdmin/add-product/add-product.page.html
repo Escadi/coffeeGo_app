@@ -33,11 +33,11 @@
     </ion-item>
 
     <!--Image input only-->
-    <ion-item lines="none">
+    <ion-item lines="none" class="imageBox">
       <ion-label position="stacked">Imagen</ion-label>
       <ion-button fill="clear" class="uploadButton" id="click-trigger">
-        <ion-img *ngIf="capturePhoto" src="capturePhoto" id="click-trigger"></ion-img>
-        <ion-img *ngIf="!capturePhoto" src="../../../assets/icon/camera.png" id="click-trigger"></ion-img>
+        <ion-img *ngIf="capturePhoto" [src]="capturePhoto" crossOrigin="anonymous"></ion-img>
+        <ion-img *ngIf="!capturePhoto" src="../../../assets/icon/camera.png" ></ion-img>
       </ion-button>
     </ion-item>
   

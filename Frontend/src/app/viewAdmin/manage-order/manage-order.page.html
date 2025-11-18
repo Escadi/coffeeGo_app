@@ -6,16 +6,13 @@
 
 <ion-content [fullscreen]="true">
   <ion-list class="myList">
-    <ion-searchbar placeholder="Busca tu producto favorito"></ion-searchbar>
 
-    <ion-item>
+<ion-item *ngFor="let p of product ; let i = index">
       <ion-avatar slot="start">
-        <img alt="producto">
+        <img *ngIf="p.filename" src="http://localhost:8080/Images/{{p.filename}}" alt="producto">
       </ion-avatar>
       <ion-label>
-        <h1></h1>
-        <h3></h3>
-        <h2></h2>
+        <h1>{{p.idProduct}}</h1>
       </ion-label>
 
       <div slot="end" class="buttonsSelection">
@@ -29,4 +26,10 @@
       </div>
     </ion-item>
   </ion-list>
+  <ion-item>
+    <ion-label>Total</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-button expand="block">Realizar Pedido</ion-button>
+  
 </ion-content>

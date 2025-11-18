@@ -4,5 +4,6 @@ module.exports = app => {
     require("./CategoryRoute")(app);
     require("./ProductRoute")(app);
     require("./OrderRoute")(app);
+    require("./DetailsOrderRoute")(app);
    
 }

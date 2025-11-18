@@ -81,6 +81,7 @@ db.sequelize.sync({ force: true }).then(() => {
 */
 
 
+
 app.get('/', (req, res) => {
     res.json('Hello my coffee!');
 });
