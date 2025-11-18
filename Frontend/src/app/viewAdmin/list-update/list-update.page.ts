@@ -21,6 +21,10 @@ export class ListUpdatePage implements OnInit {
   ngOnInit() {
     this.getAllProduct();
   }
+  ionViewWillEnter(){
+    this.getAllProduct();
+  }
+  
 
 
   getAllProduct(){

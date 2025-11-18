@@ -78,7 +78,7 @@ export class UploadProductPage implements OnInit {
           handler: () => {
             this.productService.updateProduct(this.id, updatedProduct).subscribe({
               next: res => {
-                this.location.back();
+                this.navController.back();
               }
             });
           }
