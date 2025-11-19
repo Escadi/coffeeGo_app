@@ -11,6 +11,7 @@ import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
 export class ManageOrderPage implements OnInit {
 
   product: any = []
+  total: number = 0
 
 
 
@@ -22,6 +23,12 @@ export class ManageOrderPage implements OnInit {
   ngOnInit() {
     this.getDetailsOrders();
   }
+
+  ionViewWillEnter() {
+    this.getDetailsOrders();
+  }
+
+
 
 
   getDetailsOrders() {
@@ -35,13 +42,28 @@ export class ManageOrderPage implements OnInit {
 
 
   increment(index: number) {
-    this.product[index].quantity++;
+    this.product[index].stock++;
+    this.updateSubtotal(index);
+    this.calculateTotal();
   }
 
   decrement(index: number) {
-    if (this.product[index].quantity > 0) {
-      this.product[index].quantity--;
+    if (this.product[index].stock > 0) {
+      this.product[index].stock--;
+      this.updateSubtotal(index);
+      this.calculateTotal();
     }
+  }
+
+  updateSubtotal(index: number) {
+    const p = this.product[index];
+    p.subtotal = p.stock * p.product.priceProduct;
+  }
+
+  calculateTotal() {
+    this.total = this.product.reduce((sum: number, item: any) => {
+      return sum + item.subtotal;
+    }, 0);
   }
 
 }

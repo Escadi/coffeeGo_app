@@ -13,6 +13,7 @@ import { AlertController } from '@ionic/angular';
 export class ClientFormPage {
 
   registerForm: FormGroup;
+  isSummited: Boolean = false;
 
   constructor(
 
@@ -29,7 +30,7 @@ export class ClientFormPage {
       usernameClient: ['', [Validators.required]],
       emailClient: ['', [Validators.required, Validators.email]],
       passwordClient: ['', [Validators.required, Validators.minLength(10)]],
-      rolUserClient: ["user"]
+      rolUserClient: ["false"]
     });
   }
 
@@ -51,6 +52,7 @@ export class ClientFormPage {
   }
 
   async createClient() {
+    this.isSummited = true;
     if (this.registerForm.valid) {
       this.clientService.createClient(this.registerForm.value).subscribe({
         next: async (data) => {

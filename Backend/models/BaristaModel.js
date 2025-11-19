@@ -19,9 +19,10 @@ module.exports = (sequelize, Sequelize) => {
 
     barista.associate = (models) => {
         // is going to
-        barista.hasMany(models.OrderModels, {
+        barista.hasMany(models.order, {
             foreignKey: "idBarista",
-            as: "orders"
+            sourceKey: "id",
+            as: "order"
         });
     };
     return barista;

@@ -7,19 +7,19 @@
 <ion-content [fullscreen]="true">
   <ion-list class="myList">
 
-<ion-item *ngFor="let p of product ; let i = index">
+    <ion-item *ngFor="let p of product ; let i = index">
       <ion-avatar slot="start">
-        <img *ngIf="p.filename" src="http://localhost:8080/Images/{{p.filename}}" alt="producto">
+        <img *ngIf="p.product.filename" src="http://localhost:8080/Images/{{p.product.filename}}" alt="producto">
       </ion-avatar>
       <ion-label>
-        <h1>{{p.idProduct}}</h1>
+        <h2>{{p.product.nameProduct}}</h2>
       </ion-label>
 
       <div slot="end" class="buttonsSelection">
-        <ion-button shape="round" fill="clear" (click)="decrement(i)" >
+        <ion-button shape="round" fill="clear" (click)="decrement(i)">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>
-        <ion-input type="number" [(ngModel)]="p.quantity" readonly="true" min="0" value="0"></ion-input>
+        <ion-input type="number" [(ngModel)]="p.stock" readonly="true" min="0" value="1"></ion-input>
         <ion-button shape="round" fill="clear" (click)="increment(i)">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
@@ -28,8 +28,8 @@
   </ion-list>
   <ion-item>
     <ion-label>Total</ion-label>
-    <ion-input></ion-input>
+    <ion-input [value]="total + ' €'" readonly></ion-input>
   </ion-item>
   <ion-button expand="block">Realizar Pedido</ion-button>
-  
+
 </ion-content>

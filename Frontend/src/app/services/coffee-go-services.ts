@@ -76,11 +76,6 @@ export class CoffeeGoServices {
    *  --------------------------------------------------------------
    */
 
-
-  getClient(){
-    return this.httpClient.get(this.endPointClients)
-  }
-
   createClient(client: any){
 
     let formData = new FormData();
@@ -100,9 +95,7 @@ export class CoffeeGoServices {
    *  --------------------------------------------------------------
    */
 
-  addProductDetailsOrder(order: any){
-      return this.httpClient.post(this.endpointDetailsOrder, order);
-  }
+
   getOrders(){
     return this.httpClient.get(this.endPointOrders);
   }
@@ -112,6 +105,11 @@ export class CoffeeGoServices {
    * |                  SERVICE FOR DETAILSORDER                    |
    *  --------------------------------------------------------------
    */
+
+
+  addDetailsOrder(order: any){
+    return this.httpClient.post(this.endpointDetailsOrder, order);
+  }
 
   
   getDetailsOrder(){

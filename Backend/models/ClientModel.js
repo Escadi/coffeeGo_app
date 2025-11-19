@@ -26,20 +26,15 @@ module.exports = (sequelize, Sequelize) => {
    */
 
     client.associate = (models) => {
-        //is going to
-        client.hasMany(models.ShoppingCartModel, {
-            foreignKey: "idClient",
-            as: "shoppingCart"
-        });
-        client.hasMany(models.DetailsShoppingCartModel, {
-            foreignKey: "idClient",
-            as: "detailsShoppingCart"
-        });
-        client.hasMany(models.OrderModel, {
+        client.hasMany(models.order, {
             foreignKey: "idClient",
             as: "order"
         });
-
+        client.hasMany(models.detailsOrder, {
+            foreignKey: "idClient",
+            sourceKey: "id",
+            as: "detailsOrder"
+        });
     };
     return client;
 }

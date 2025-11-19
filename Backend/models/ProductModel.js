@@ -29,12 +29,14 @@ module.exports = (sequelize,Sequelize) => {
     
     product.associate = (models)=>{
         // COMES FROM
-        product.belongsTo(models.CategoryModel,{
-            foreigKey:"idCategory",
+        product.belongsTo(models.category,{
+            foreignKey:"idCategory",
+            targetKey:"id",
             as:"category"
         });
-        product.hasMany(models.DetailsOrderModel,{
-            foreigKey: "idProduct",
+        product.hasMany(models.detailsOrder,{
+            foreignKey: "idProduct",
+            sourceKey: "id",
             as: "detailsOrder"
         });
 

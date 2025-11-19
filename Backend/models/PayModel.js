@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
   */
     pay.associate = (models) => {
         // COMES TO
-        pay.belongsTo(models.OrderModel,{
+        pay.belongsTo(models.order,{
             foreignKey:"idOrder",
             as:"order"
         });

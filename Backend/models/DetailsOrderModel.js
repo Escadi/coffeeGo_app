@@ -30,13 +30,15 @@ module.exports = (sequelize, Sequelize) => {
     detailsOrder.associate = (models) => {
 
         // COMES TO
-        detailsOrder.belongsTo(models.ProductModel, {
+        detailsOrder.belongsTo(models.product, {
             foreignKey: "idProduct",
+            targetKey: "id",
             as: "product"
         });
 
-        detailsOrder.belongsTo(models.ClientModel, {
+        detailsOrder.belongsTo(models.client, {
             foreignKey: "idClient",
+            targetKey: "id",
             as: "client"
         });
 

@@ -44,18 +44,18 @@ module.exports = (sequelize, Sequelize) => {
 
     order.associate = (models) => {
         //COMES TO
-        order.belongsTo(models.ClientModel, {
+        order.belongsTo(models.client, {
             foreignKey: "idClient",
             as: "client"
         });
 
-        order.belongsTo(models.BaristaModel, {
+        order.belongsTo(models.barista, {
             foreignKey: "idBarista",
             as: "barista"
         });
 
         // IS GOING TO
-        order.hasMany(models.PayModel, {
+        order.hasMany(models.pay, {
             foreignKey: "idOrder",
             as: "pay"
         });

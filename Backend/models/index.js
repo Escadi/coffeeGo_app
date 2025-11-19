@@ -47,7 +47,7 @@ db.pay = require('./PayModel.js')(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {
     if (db[modelName].associate) {
-        db[modelName].associate.db
+        db[modelName].associate(db);
     }
 });
 

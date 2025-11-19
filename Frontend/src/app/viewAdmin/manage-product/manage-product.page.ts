@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { CoffeeGoServices } from 'src/app/services/coffee-go-services';
-import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -16,7 +16,8 @@ export class ManageProductPage implements OnInit {
 
   constructor(
     private productService: CoffeeGoServices,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) { }
 
 
@@ -27,11 +28,32 @@ export class ManageProductPage implements OnInit {
   ionViewWillEnter() {
     this.getAllProduct();
   }
+   /**
+   *  --------------------------------------------------------------
+   * |                            ALERT                            |
+   *  --------------------------------------------------------------
+   */
+  async alertAdd() {
+  const alert = await this.alertController.create({
+    header: 'Éxito',
+    message: 'Se te ha añadido correctamente el pedido',
+    buttons: [
+      {
+        text: 'OK',
+        handler: async () => {
+          
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+
 
 
   /**
    *  --------------------------------------------------------------
-   * |                     CALL APIREST PRODUCT                     |
+   * |                     GET ALL PRODUCTO IN LIST                 |
    *  --------------------------------------------------------------
    */
   getAllProduct() {
@@ -40,6 +62,27 @@ export class ManageProductPage implements OnInit {
         next: (data: any) =>
           this.product = data
       });
+  }
+  
+  /**
+   *  --------------------------------------------------------------
+   * |                CREATE DETAILSORDER TO PRODUCT                |
+   *  --------------------------------------------------------------
+   */
+
+  createOrder(product: any){
+    const myOrder = {
+      idProduct: product.id,
+      stock: 1,
+      idClient: 2,
+      subtotal: product.priceProduct
+    };
+    this.productService.addDetailsOrder(myOrder).subscribe({
+      next: () => {
+        console.log("myOrder")
+        this.alertAdd();
+      }
+    });
   }
 
 
