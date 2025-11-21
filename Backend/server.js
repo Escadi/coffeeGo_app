@@ -5,9 +5,6 @@ var path = require('path');
 const jwt = require('jsonwebtoken');
 const app = express();
 
-
-
-
 var corsOptions = {
   origin: [
     "http://localhost:8100",     // Ionic serve
@@ -16,8 +13,6 @@ var corsOptions = {
     "http://192.168.0.100",       // tu PC (IMPORTANTE)
     "http://192.168.0.100:8080"   // backend
   ],
-   methods: "GET,POST,PUT,DELETE,OPTIONS",
-  credentials: true
 };
 
 app.use(cors(corsOptions));
