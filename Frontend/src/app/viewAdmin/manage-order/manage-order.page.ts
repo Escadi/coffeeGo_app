@@ -13,8 +13,6 @@ export class ManageOrderPage implements OnInit {
   product: any = []
   total: number = 0
 
-
-
   constructor(
     private detailsOrderService: CoffeeGoServices,
     private router: Router
@@ -24,20 +22,23 @@ export class ManageOrderPage implements OnInit {
     this.getDetailsOrders();
   }
 
-  ionViewWillEnter() {
+   ionViewWillEnter() {
     this.getDetailsOrders();
   }
 
+    getDetailsOrders() {
+    this.detailsOrderService.getDetailsOrder().subscribe({
+      next: (data: any) => {
+        this.product = data;
 
+        // Recalcular subtotales por si vienen sin calcular
+        this.product.forEach((p: any) => {
+          p.subtotal = p.stock * p.product.priceProduct;
+        });
 
-
-  getDetailsOrders() {
-    this.detailsOrderService.getDetailsOrder().subscribe(
-      {
-        next: (data: any) =>
-          this.product = data
-
-      });
+        this.calculateTotal();
+      }
+    });
   }
 
 
@@ -63,7 +64,7 @@ export class ManageOrderPage implements OnInit {
   calculateTotal() {
     this.total = this.product.reduce((sum: number, item: any) => {
       return sum + item.subtotal;
-    }, 0);
+    },0);
   }
 
 }

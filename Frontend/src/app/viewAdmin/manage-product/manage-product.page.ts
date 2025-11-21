@@ -49,8 +49,6 @@ export class ManageProductPage implements OnInit {
   await alert.present();
 }
 
-
-
   /**
    *  --------------------------------------------------------------
    * |                     GET ALL PRODUCTO IN LIST                 |
