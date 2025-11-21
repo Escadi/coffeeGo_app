@@ -6,8 +6,18 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 
+
+
 var corsOptions = {
-    origin: "http://localhost:8100"
+  origin: [
+    "http://localhost:8100",     // Ionic serve
+    "capacitor://localhost",     // APK Android
+    "ionic://localhost",         // APK Ionic WebView
+    "http://192.168.0.100",       // tu PC (IMPORTANTE)
+    "http://192.168.0.100:8080"   // backend
+  ],
+   methods: "GET,POST,PUT,DELETE,OPTIONS",
+  credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -89,6 +99,6 @@ app.get('/', (req, res) => {
 require("../Backend/routes")(app);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0",() => {
     console.log(`Server is running on port ${PORT}`);
 });

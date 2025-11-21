@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 export class AuthService {
   
   initializedStorage: boolean = false;
-  AUTH_SERVER_ADDRESS: string = 'https://localhost:8080';
+  AUTH_SERVER_ADDRESS: string = 'http://192.168.0.100:8080';
 
   constructor(
     private httpClient: HttpClient,
