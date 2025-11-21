@@ -4,8 +4,7 @@ export interface AuthResponse {
         nameClient: string;
         usernameClient: string;
         emailClient: string;
-        passwordClient:string;
         rolUserClient:string;
     },
-    access_token: string
+    access_token: string;
 }

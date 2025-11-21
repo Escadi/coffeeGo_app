@@ -1,0 +1,68 @@
+ion-content {
+    --background: #f3f3f3de;
+    --overflow: hidden !important
+}
+
+ion-item {
+    --background: #f3f3f3de;
+}
+
+.btnBack {
+    background: transparent;
+}
+
+.title {
+    box-shadow: none;
+    background: #f3f3f3de;
+}
+
+.formUsers {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.mainForm ion-label {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.mainForm ion-input {
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid transparentize($color: #000000, $amount: 0.6);
+    margin-top: 30px;
+    margin-right: 25px;
+    height: 60px;
+    --padding-start: 12px;
+}
+ion-item.labelPassword{
+
+}
+
+ion-button {
+    margin-top: 100px;
+    background-color: #fc7c04;
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+ion-button.btnPassword {
+  --background: #fc7c04;
+  --color: white;
+  --border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top:  10px;
+}

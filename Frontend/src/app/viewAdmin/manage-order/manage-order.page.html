@@ -26,10 +26,14 @@
       </div>
     </ion-item>
   </ion-list>
-  <ion-item>
-    <ion-label>Total</ion-label>
-    <ion-input readonly [value]="total + ' €'" ></ion-input>
-  </ion-item>
-  <ion-button expand="block">Realizar Pedido</ion-button>
+  <ion-footer>
+    <ion-item class="labelTotal">
+      <ion-label>Total</ion-label>
+      <ion-input readonly [value]="total+'€'"></ion-input>
+      
+    </ion-item>
+    <ion-button expand="block" class="btnOrder">Realizar Pedido</ion-button>
+  </ion-footer>
+
 
 </ion-content>

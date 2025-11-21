@@ -35,12 +35,14 @@ exports.create = async (req, res) => {
       emailClient: email,
       passwordClient: hashedPassword,
       rolUserClient: req.body.rolUserClient
+
     });
 
     const token = utils.generateToken(newClient);
     const userObj = utils.getCleanUser(newClient);
 
     res.json({ user: userObj, access_token: token });
+    
     console.log("Client created successfully:", newClient);
     console.log("Generated token:", token);
 

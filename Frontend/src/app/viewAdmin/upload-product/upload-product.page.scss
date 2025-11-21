@@ -39,14 +39,15 @@ ion-textarea {
     --padding-start: 10px
 }
 
-.btnAdd {
-    background: #fd8c23;
-    height: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 50px;
-    border-radius: 10px;
-    font-size: 15px;
+ion-button.btnAdd {
+    --background: #fc7c04;
+  --color: white;
+  --border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .imageBox {

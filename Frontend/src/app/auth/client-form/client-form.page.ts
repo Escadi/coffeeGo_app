@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoffeeGoServices } from '../../services/coffee-go-services';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../auth-service';
 
 @Component({
   selector: 'app-client-form',
@@ -20,7 +21,8 @@ export class ClientFormPage {
     private formBuilder: FormBuilder,
     private clientService: CoffeeGoServices,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private authService: AuthService
 
 
   ) {
@@ -30,7 +32,7 @@ export class ClientFormPage {
       usernameClient: ['', [Validators.required]],
       emailClient: ['', [Validators.required, Validators.email]],
       passwordClient: ['', [Validators.required, Validators.minLength(10)]],
-      rolUserClient: ["false"]
+      rolUserClient: ["USER"]
     });
   }
 
@@ -52,7 +54,7 @@ export class ClientFormPage {
   }
 
   async createClient() {
-    this.isSummited = true;
+    //this.isSummited = true;
     if (this.registerForm.valid) {
       this.clientService.createClient(this.registerForm.value).subscribe({
         next: async (data) => {
